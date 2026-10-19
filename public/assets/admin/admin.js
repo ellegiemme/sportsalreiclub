@@ -9,7 +9,8 @@
       translated: 'Tradotto ✓ — rileggi e salva', failed: 'Traduzione non riuscita. Riprova tra poco.',
       'missing-key': 'La traduzione automatica non è ancora attiva: manca la chiave ANTHROPIC_API_KEY su Cloudflare.',
       refused: 'Il servizio di traduzione non ha tradotto questo testo. Prova a tradurlo a mano.',
-      'too-long': 'Il testo è troppo lungo per una traduzione sola. Prova a dividerlo.'
+      'too-long': 'Il testo è troppo lungo per una traduzione sola. Prova a dividerlo.',
+      whiteLogo: 'Caricato, ma il logo ha lo sfondo bianco: sul sito apparirà dentro un riquadro bianco. Se puoi, usa un PNG con sfondo trasparente. Ricordati di salvare.'
     },
     pt: {
       linkUrl: 'Endereço da ligação (https://…)', uploading: 'A carregar…', uploaded: 'Carregada. Não se esqueça de guardar.',
@@ -19,7 +20,8 @@
       translated: 'Traduzido ✓ — reveja e guarde', failed: 'Não foi possível traduzir. Tente novamente daqui a pouco.',
       'missing-key': 'A tradução automática ainda não está ativa: falta a chave ANTHROPIC_API_KEY no Cloudflare.',
       refused: 'O serviço de tradução não traduziu este texto. Traduza-o manualmente.',
-      'too-long': 'O texto é demasiado longo para uma só tradução. Experimente dividi-lo.'
+      'too-long': 'O texto é demasiado longo para uma só tradução. Experimente dividi-lo.',
+      whiteLogo: 'Carregado, mas o logótipo tem fundo branco: no site vai aparecer dentro de um retângulo branco. Se possível, use um PNG com fundo transparente. Não se esqueça de guardar.'
     }
   };
   var T = MSG[document.body.getAttribute('data-lang')] || MSG.it;
@@ -100,13 +102,44 @@
       img.src = URL.createObjectURL(file);
     });
   }
+  // Logos: cut away empty borders (transparent or plain white) so every logo fills its space.
+  function trimLogo(file) {
+    return new Promise(function (resolve) {
+      if (!/^image\/(jpeg|png|webp)$/.test(file.type)) return resolve({ file: file });
+      var img = new Image();
+      img.onload = function () {
+        // Trim at high resolution first, then bring the result down to 800 px at most.
+        var scale = Math.min(1, 3000 / Math.max(img.width, img.height));
+        var w = Math.round(img.width * scale), h = Math.round(img.height * scale);
+        var c = document.createElement('canvas'); c.width = w; c.height = h;
+        var g = c.getContext('2d'); g.drawImage(img, 0, 0, w, h);
+        var d = g.getImageData(0, 0, w, h).data;
+        var corner = d[3] > 200 && d[0] > 235 && d[1] > 235 && d[2] > 235; // opaque white background
+        function empty(i) { return d[i + 3] < 16 || (corner && d[i] > 235 && d[i + 1] > 235 && d[i + 2] > 235); }
+        var x0 = w, y0 = h, x1 = -1, y1 = -1;
+        for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+          if (!empty((y * w + x) * 4)) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+        }
+        if (x1 < 0) return resolve({ file: file, white: corner });
+        var pad = Math.round(Math.max(x1 - x0, y1 - y0) * 0.02);
+        x0 = Math.max(0, x0 - pad); y0 = Math.max(0, y0 - pad); x1 = Math.min(w - 1, x1 + pad); y1 = Math.min(h - 1, y1 + pad);
+        var cw = x1 - x0 + 1, ch = y1 - y0 + 1, k = Math.min(1, 800 / Math.max(cw, ch));
+        var o = document.createElement('canvas'); o.width = Math.round(cw * k); o.height = Math.round(ch * k);
+        o.getContext('2d').drawImage(c, x0, y0, cw, ch, 0, 0, o.width, o.height);
+        o.toBlob(function (b) { resolve({ file: b ? new File([b], file.name.replace(/\.\w+$/, '') + '.png', { type: 'image/png' }) : file, white: corner }); }, 'image/png');
+      };
+      img.onerror = function () { resolve({ file: file }); };
+      img.src = URL.createObjectURL(file);
+    });
+  }
   if (fileInput) {
     fileInput.addEventListener('change', function () {
       var f = fileInput.files[0];
       if (!f) return;
       var kind = fileInput.getAttribute('data-kind') || 'news';
       status.textContent = T.uploading;
-      resize(f, kind === 'logo' ? 800 : 2000).then(function (small) {
+      var whiteBg = false;
+      (kind === 'logo' ? trimLogo(f).then(function (r) { whiteBg = r.white; return r.file; }) : resize(f, 2000)).then(function (small) {
         var data = new FormData();
         data.append('file', small);
         data.append('kind', kind);
@@ -116,7 +149,7 @@
         hidden.value = res.url;
         preview.style.backgroundImage = "url('" + res.url + "')";
         preview.textContent = '';
-        status.textContent = T.uploaded;
+        status.textContent = whiteBg ? T.whiteLogo : T.uploaded;
         dirty = true;
       }).catch(function () {
         status.textContent = T.uploadFailed;

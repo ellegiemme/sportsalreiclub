@@ -60,7 +60,9 @@ a.wm-slot:hover,.wm-slot:hover{border-color:var(--gold);color:var(--gold)}
 }
 
 /* brand wordmarks */
-.wm-img{width:auto;opacity:.92;transition:.25s;display:block}
+.wm-img{width:auto;opacity:.92;transition:.25s;display:block;object-fit:contain;max-width:100%}
+.sp-inline .wm-img,.sp-matchday .wm-img,.sp-slim .wm-img{max-width:200px}
+.sp-band .wm-img{max-width:min(380px,100%)}
 a:hover .wm-img,.wm-img:hover{opacity:1}
 .wm-img.lg{height:92px}.wm-img.md{height:34px}.wm-img.sm{height:46px}.wm-img.xs{height:32px}.wm-img.xsv{height:52px}.wm-img.hs{height:58px}
 .wm-strela{font-weight:800;letter-spacing:.06em;text-transform:uppercase}
