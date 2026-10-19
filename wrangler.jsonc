@@ -11,7 +11,7 @@
     {
       "binding": "DB",
       "database_name": "sportsalreiclub",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "f9a62bf5-1442-4416-9f03-7f063f356a76",
       "migrations_dir": "migrations"
     }
   ],
