@@ -7,6 +7,7 @@ import { seasonPage } from './views/season.js';
 import { teamPage } from './views/team.js';
 import { clubPage } from './views/club.js';
 import { newsPage, articlePage } from './views/news.js';
+import { handleAdmin, serveMedia } from './admin/index.js';
 
 // Old static file names → new addresses (kept so existing links and bookmarks still work).
 const LEGACY = {
@@ -71,6 +72,8 @@ async function site(request, env, lang, path) {
 export default {
   async fetch(request, env) {
     const u = new URL(request.url);
+    if (u.pathname === '/admin' || u.pathname.startsWith('/admin/')) return handleAdmin(request, env, u);
+    if (u.pathname.startsWith('/media/')) return serveMedia(env, u.pathname.slice(7));
     let path = u.pathname.replace(/\/+$/, '') || '/';
 
     // Language prefix: /pt/... ; English lives at the root.

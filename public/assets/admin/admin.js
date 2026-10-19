@@ -1,0 +1,162 @@
+// Sal Rei site admin: editor, image upload, AI translation, confirmations.
+(function () {
+  // Confirm destructive buttons.
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-confirm]');
+    if (b && !confirm(b.getAttribute('data-confirm'))) e.preventDefault();
+  });
+
+  // ---------- rich text editors ----------
+  var editors = document.querySelectorAll('.editor[data-for]');
+  // New lines become paragraphs, not <div>s.
+  try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch (e) {}
+  function sync() {
+    editors.forEach(function (ed) {
+      var ta = ed.parentNode.querySelector('textarea[name="' + ed.getAttribute('data-for') + '"]');
+      if (ta) ta.value = ed.innerHTML;
+    });
+  }
+  editors.forEach(function (ed) {
+    if (!ed.innerHTML.trim()) ed.innerHTML = '<p><br></p>';
+    ed.addEventListener('input', function () { dirty = true; });
+    // Paste as plain text, split into paragraphs, so formatting from Word or WhatsApp doesn't leak in.
+    ed.addEventListener('paste', function (e) {
+      e.preventDefault();
+      var text = (e.clipboardData || window.clipboardData).getData('text/plain');
+      var htmlText = text.split(/\n\s*\n|\r\n\s*\r\n/).map(function (p) {
+        return '<p>' + p.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\n/g, '<br>') + '</p>';
+      }).join('');
+      document.execCommand('insertHTML', false, htmlText);
+    });
+  });
+  document.querySelectorAll('.tools button[data-cmd]').forEach(function (b) {
+    b.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    b.addEventListener('click', function () {
+      var cmd = b.getAttribute('data-cmd');
+      var ed = b.closest('.field').querySelector('.editor');
+      ed.focus();
+      if (cmd === 'link') {
+        var url = prompt('Indirizzo del link (https://…)');
+        if (url && /^https?:\/\//.test(url)) document.execCommand('createLink', false, url);
+        return;
+      }
+      document.execCommand(cmd, false, b.getAttribute('data-arg') ? '<' + b.getAttribute('data-arg') + '>' : null);
+      dirty = true;
+    });
+  });
+
+  // Warn before leaving with unsaved changes.
+  var dirty = false;
+  var bar = document.querySelector('.bar');
+  var form = bar && bar.closest('form');
+  if (form) {
+    form.addEventListener('input', function () { dirty = true; });
+    form.addEventListener('submit', function () { sync(); dirty = false; });
+    window.addEventListener('beforeunload', function (e) { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+  }
+
+  // ---------- image upload (resized in the browser before sending) ----------
+  var fileInput = document.getElementById('img-file');
+  var status = document.getElementById('img-status');
+  var preview = document.getElementById('img-preview');
+  var hidden = document.getElementById('image');
+  function resize(file, max) {
+    return new Promise(function (resolve) {
+      if (!/^image\/(jpeg|png|webp)$/.test(file.type)) return resolve(file);
+      var img = new Image();
+      img.onload = function () {
+        var scale = Math.min(1, max / Math.max(img.width, img.height));
+        if (scale === 1 && file.size < 1.5e6) return resolve(file);
+        var c = document.createElement('canvas');
+        c.width = Math.round(img.width * scale); c.height = Math.round(img.height * scale);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        var type = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+        c.toBlob(function (b) { resolve(b ? new File([b], file.name, { type: type }) : file); }, type, 0.85);
+      };
+      img.onerror = function () { resolve(file); };
+      img.src = URL.createObjectURL(file);
+    });
+  }
+  if (fileInput) {
+    fileInput.addEventListener('change', function () {
+      var f = fileInput.files[0];
+      if (!f) return;
+      var kind = fileInput.getAttribute('data-kind') || 'news';
+      status.textContent = 'Caricamento in corso…';
+      resize(f, kind === 'logo' ? 800 : 2000).then(function (small) {
+        var data = new FormData();
+        data.append('file', small);
+        data.append('kind', kind);
+        return fetch('/admin/api/immagine', { method: 'POST', body: data, credentials: 'same-origin' });
+      }).then(function (r) { return r.json(); }).then(function (res) {
+        if (!res.url) throw new Error(res.error || 'upload');
+        hidden.value = res.url;
+        preview.style.backgroundImage = "url('" + res.url + "')";
+        preview.textContent = '';
+        status.textContent = 'Caricata. Ricordati di salvare.';
+        dirty = true;
+      }).catch(function () {
+        status.textContent = 'Caricamento non riuscito. Usa una foto JPG o PNG sotto i 10 MB.';
+      });
+    });
+  }
+  var remove = document.getElementById('img-remove');
+  if (remove) remove.addEventListener('click', function () {
+    hidden.value = ''; preview.style.backgroundImage = ''; preview.textContent = 'Nessuna foto: verrà mostrata la grafica';
+    status.textContent = 'Foto tolta. Ricordati di salvare.'; dirty = true;
+  });
+  var pos = document.getElementById('image_pos');
+  if (pos && preview) pos.addEventListener('change', function () { preview.style.backgroundPosition = pos.value; });
+
+  // ---------- AI translation ----------
+  var FIELDS = ['title', 'excerpt', 'pull', 'gfx_cap'];
+  function collect(l) {
+    sync();
+    var f = {};
+    FIELDS.forEach(function (k) { var el = document.querySelector('[name="' + k + '_' + l + '"]'); f[k] = el ? el.value : ''; });
+    f.body = document.querySelector('.editor[data-for="body_' + l + '"]').innerHTML;
+    f.facts = [];
+    for (var i = 0; i < 3; i++) {
+      var k = document.querySelector('[name="fact_k_' + l + '_' + i + '"]').value, v = document.querySelector('[name="fact_v_' + l + '_' + i + '"]').value;
+      if (k || v) f.facts.push([k, v]);
+    }
+    return f;
+  }
+  function fill(l, f) {
+    FIELDS.forEach(function (k) { var el = document.querySelector('[name="' + k + '_' + l + '"]'); if (el) el.value = f[k] || ''; });
+    document.querySelector('.editor[data-for="body_' + l + '"]').innerHTML = f.body || '';
+    for (var i = 0; i < 3; i++) {
+      document.querySelector('[name="fact_k_' + l + '_' + i + '"]').value = (f.facts[i] || [])[0] || '';
+      document.querySelector('[name="fact_v_' + l + '_' + i + '"]').value = (f.facts[i] || [])[1] || '';
+    }
+    sync(); dirty = true;
+  }
+  var ERR = {
+    'missing-key': 'La traduzione automatica non è ancora attiva: manca la chiave ANTHROPIC_API_KEY su Cloudflare.',
+    refused: 'Il servizio di traduzione non ha tradotto questo testo. Prova a tradurlo a mano.',
+    'too-long': 'Il testo è troppo lungo per una traduzione sola. Prova a dividerlo.',
+  };
+  document.querySelectorAll('[data-translate]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var parts = b.getAttribute('data-translate').split(':'), from = parts[0], to = parts[1];
+      var src = collect(from);
+      if (!src.title.trim() && !src.body.replace(/<[^>]+>/g, '').trim()) { alert('Scrivi prima il testo nell’altra lingua.'); return; }
+      var target = collect(to);
+      if ((target.title.trim() || target.body.replace(/<[^>]+>/g, '').trim()) && !confirm('Sostituire il testo già scritto in questa lingua con la traduzione?')) return;
+      var label = b.textContent;
+      b.disabled = true; b.textContent = 'Traduzione in corso…';
+      fetch('/admin/api/traduci', { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ from: from, to: to, fields: src }) })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (!res.fields) throw new Error(res.error || 'failed');
+          fill(to, res.fields);
+          b.textContent = 'Tradotto ✓ — rileggi e salva';
+          setTimeout(function () { b.textContent = label; b.disabled = false; }, 4000);
+        })
+        .catch(function (e) {
+          alert(ERR[e.message] || 'Traduzione non riuscita. Riprova tra poco.');
+          b.textContent = label; b.disabled = false;
+        });
+    });
+  });
+})();

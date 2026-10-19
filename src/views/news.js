@@ -61,7 +61,7 @@ function facts(raw) {
   try { return JSON.parse(raw || '[]'); } catch { return []; }
 }
 
-export function articlePage({ t, a, more, partners, placements, preview = false }) {
+export function articlePage({ t, a, more, partners, placements }) {
   const n = t.news;
   const title = pick(a, 'title', t.lang);
   const pull = pick(a, 'pull', t.lang);
@@ -69,7 +69,6 @@ export function articlePage({ t, a, more, partners, placements, preview = false 
   const path = `/news/${a.slug}`;
   const share = encodeURIComponent(`https://sport-sal-rei-club.mgm-523.workers.dev${url(t.lang, path)}`);
   const body = html`
-${preview ? html`<div class="preview-bar">${t.lang === 'pt' ? 'Pré-visualização — esta notícia ainda não está publicada' : 'Preview — this article is not published yet'}</div>` : ''}
 <article>
 <section class="art-hero">
   <div class="bg">${newsVisual(t, a)}</div>

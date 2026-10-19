@@ -42,3 +42,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 
 .empty-note{font-family:'Inter',sans-serif;font-size:16px;color:var(--mut)}
 .nextbar .col{align-self:start}
+
+/* admin preview banner on article previews */
+.preview-bar{position:sticky;top:0;z-index:300;background:#f5b400;color:#120507;font:600 14px/1.4 'Inter',sans-serif;text-align:center;padding:10px 16px}
+.preview-bar a{text-decoration:underline}

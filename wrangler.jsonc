@@ -15,5 +15,8 @@
       "migrations_dir": "migrations"
     }
   ],
+  "r2_buckets": [
+    { "binding": "MEDIA", "bucket_name": "sportsalreiclub-media" }
+  ],
   "observability": { "enabled": true }
 }

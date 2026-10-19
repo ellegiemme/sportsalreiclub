@@ -10,6 +10,8 @@ Online: https://sport-sal-rei-club.mgm-523.workers.dev/ (deploy automatico a ogn
 ```
 src/index.js          router: pagine, lingue, redirect dei vecchi indirizzi .html
 src/views/            modelli delle pagine (layout, home, season, team, club, news)
+src/admin/            pannello di gestione /admin (login, notizie, partite, partner, account)
+public/assets/admin/  CSS e JS del pannello
 src/lib/              database, traduzioni (i18n-en.js / i18n-pt.js), classifica, sanitizer
 src/data/squad.js     rosa e staff della prima squadra
 migrations/           schema D1 e contenuti iniziali (notizie, partite, partner)
@@ -20,6 +22,20 @@ public/assets/        CSS, JS e immagini statiche
 Nel database: notizie (EN + PT, bozza/pubblicata), competizioni e partite, classifiche
 (calcolate dai risultati), partner e posizioni degli sponsor. La stagione 2025/26 è archiviata
 (`competitions.archived = 1`) e non compare sul sito.
+
+## Pannello di gestione (`/admin`)
+
+Login con email e password (account in D1, sessioni con cookie, blocco dopo 8 tentativi falliti).
+Sezioni: Notizie (bozza, anteprima, pubblicazione solo con EN + PT, pulsante "Traduci" con AI,
+foto caricate su R2), Partite (risultati per giornata, classifica automatica, spareggio manuale,
+nuove partite), Partner (loghi, ordine, posizioni degli sponsor sul sito), Account.
+
+Impostazioni sul Worker (Cloudflare → Impostazioni → Variabili e segreti):
+- `SETUP_KEY` — chiave per creare il primo account su `/admin/primo-accesso`
+- `ANTHROPIC_API_KEY` — per il pulsante "Traduci" (modello `claude-opus-5-5`)
+
+Bucket R2 `sportsalreiclub-media` (binding `MEDIA`) per le immagini caricate, servite su `/media/...`.
+In locale: `.dev.vars` con `SETUP_KEY=...` (e facoltativamente `ANTHROPIC_API_KEY=...`).
 
 ## Classifica
 
