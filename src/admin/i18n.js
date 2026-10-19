@@ -96,6 +96,10 @@ const it = {
     uploadLogo: 'Carica logo…', logoHint: 'Meglio PNG o SVG bianco su sfondo trasparente: i loghi stanno su fondo scuro.',
     showStrip: 'Mostra nella fascia partner in fondo alle pagine', activeLabel: 'Attivo (togli la spunta per nasconderlo ovunque)',
     save: 'Salva', delete: 'Elimina', confirmDelete: 'Eliminare questo partner?',
+    whereTitle: 'Dove compare questo partner',
+    whereIntro: 'Spunta gli spazi del sito in cui deve comparire. Ogni spazio ospita un solo partner: se è già occupato, verrà sostituito da questo.',
+    now: 'ora:', free: 'libero', willReplace: 'verrà sostituito',
+    pages: { home: 'Home', news: 'Notizie', season: 'Stagione', team: 'Prima squadra' },
   },
 
   account: {
@@ -203,6 +207,10 @@ const pt = {
     uploadLogo: 'Carregar logótipo…', logoHint: 'De preferência PNG ou SVG branco com fundo transparente: os logótipos ficam sobre fundo escuro.',
     showStrip: 'Mostrar na faixa de parceiros no fundo das páginas', activeLabel: 'Ativo (tire o visto para o ocultar em todo o site)',
     save: 'Guardar', delete: 'Eliminar', confirmDelete: 'Eliminar este parceiro?',
+    whereTitle: 'Onde aparece este parceiro',
+    whereIntro: 'Assinale os espaços do site onde deve aparecer. Cada espaço tem um só parceiro: se já estiver ocupado, será substituído por este.',
+    now: 'agora:', free: 'livre', willReplace: 'será substituído',
+    pages: { home: 'Página inicial', news: 'Notícias', season: 'Época', team: 'Equipa principal' },
   },
 
   account: {

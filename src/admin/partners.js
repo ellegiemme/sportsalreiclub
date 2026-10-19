@@ -4,6 +4,8 @@ import { adminT } from './i18n.js';
 
 const TIERS = ['main', 'technical', 'official'];
 export const SLOTS = ['main_band', 'matchday', 'academy', 'newsroom', 'match_centre', 'standings', 'squad', 'kit'];
+// Sponsor spaces grouped by the page they appear on.
+const PAGES = [['home', ['main_band', 'matchday', 'academy']], ['news', ['newsroom']], ['season', ['match_centre', 'standings']], ['team', ['squad', 'kit']]];
 
 function logo(p) {
   if (p.logo) return html`<span class="plogo"><img src="${p.logo}" alt=""></span>`;
@@ -18,9 +20,9 @@ export async function partnersPage({ db, user, url }) {
   const body = html`<div class="head"><div><h1>${P.title}</h1><p>${P.intro}</p></div>
   <a class="btn primary" href="/admin/partner/nuovo">${P.add}</a></div>
 <div class="list">
-${partners.map((p) => html`<a class="row" href="/admin/partner/${p.id}">${logo(p)}
-  <span class="grow"><span class="t">${p.name}</span><span class="s">${P.tiers[p.tier]}${p.in_strip ? ` · ${P.inStrip}` : ''}</span></span>
-  <span class="pill ${p.active ? 'pub' : ''}">${p.active ? P.active : P.hidden}</span></a>`)}
+${partners.map((p) => { const here = SLOTS.filter((x) => slotOf[x] === p.id).map((x) => P.slots[x][0]); return html`<a class="row" href="/admin/partner/${p.id}">${logo(p)}
+  <span class="grow"><span class="t">${p.name}</span><span class="s">${P.tiers[p.tier]}${p.in_strip ? ` · ${P.inStrip}` : ''}${here.length ? ` · ${here.join(', ')}` : ''}</span></span>
+  <span class="pill ${p.active ? 'pub' : ''}">${p.active ? P.active : P.hidden}</span></a>`; })}
 </div>
 
 <form class="panel mt" method="post" action="/admin/partner/posizioni">
@@ -40,6 +42,14 @@ export async function editPartner({ db, user, url, id }) {
   const p = id ? await db.prepare('SELECT * FROM partners WHERE id = ?').bind(id).first()
     : { name: '', tier: 'official', logo: '', url: '', sort: 99, in_strip: 1, active: 1 };
   if (!p) return redirect('/admin/partner');
+  const { results: taken } = await db.prepare('SELECT pl.slot, pa.id, pa.name FROM placements pl JOIN partners pa ON pa.id = pl.partner_id').all();
+  const holder = Object.fromEntries(taken.map((x) => [x.slot, x]));
+  const slotBox = (slot) => {
+    const h = holder[slot], mine = id && h?.id === id;
+    return html`<label class="slot${mine ? ' on' : ''}"><input type="checkbox" name="slot" value="${slot}"${mine ? raw(' checked') : ''}>
+      <span><b>${P.slots[slot][0]}</b><small>${P.slots[slot][1]}</small>
+      <small class="${h && !mine ? 'taken' : ''}">${mine ? '' : h ? html`${P.now} ${h.name}<span class="repl"> — ${P.willReplace}</span>` : P.free}</small></span></label>`;
+  };
   const body = html`<a class="crumb" href="/admin/partner">${P.all}</a>
 <div class="head"><h1>${id ? p.name : P.newTitle}</h1></div>
 <form class="panel" method="post" action="/admin/partner/${id || 'nuovo'}">
@@ -59,6 +69,9 @@ export async function editPartner({ db, user, url, id }) {
       <p class="hint mt" id="img-status">${P.logoHint}</p>
     </div>
   </div>
+  <h2 class="mt" style="margin-top:28px">${P.whereTitle}</h2>
+  <p class="muted" style="margin-bottom:14px">${P.whereIntro}</p>
+  <div class="slots">${PAGES.map(([pg, slots]) => html`<div class="slot-page"><h3>${P.pages[pg]}</h3>${slots.map(slotBox)}</div>`)}</div>
   <div class="actions mt">
     <label class="check"><input type="checkbox" name="in_strip" value="1"${p.in_strip ? raw(' checked') : ''}> ${P.showStrip}</label>
     <label class="check"><input type="checkbox" name="active" value="1"${p.active ? raw(' checked') : ''}> ${P.activeLabel}</label>
@@ -86,11 +99,21 @@ export async function savePartner({ db, id, form }) {
     const cls = logo && logo !== old?.logo ? 'sm' : old?.logo_class;
     await db.prepare('UPDATE partners SET name = ?, tier = ?, url = ?, logo = ?, logo_class = ?, sort = ?, in_strip = ?, active = ? WHERE id = ?')
       .bind(name, tier, link, logo, cls, sort, inStrip, active, id).run();
+    await applySlots(db, id, form, active);
     return redirect(`/admin/partner/${id}?msg=saved`);
   }
   const r = await db.prepare('INSERT INTO partners (name, tier, url, logo, logo_class, sort, in_strip, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id')
     .bind(name, tier, link, logo, 'sm', sort, inStrip, active).first();
+  await applySlots(db, r.id, form, active);
   return redirect(`/admin/partner/${r.id}?msg=created`);
+}
+
+// Ticked spaces go to this partner (replacing whoever had them); unticked ones it held are freed.
+async function applySlots(db, pid, form, active) {
+  const chosen = active ? new Set(form.getAll('slot').filter((x) => SLOTS.includes(x))) : new Set();
+  await db.batch(SLOTS.map((slot) => chosen.has(slot)
+    ? db.prepare('INSERT INTO placements (slot, partner_id) VALUES (?, ?) ON CONFLICT(slot) DO UPDATE SET partner_id = excluded.partner_id').bind(slot, pid)
+    : db.prepare('UPDATE placements SET partner_id = NULL WHERE slot = ? AND partner_id = ?').bind(slot, pid)));
 }
 
 export async function savePlacements({ db, form }) {

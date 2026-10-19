@@ -180,3 +180,16 @@ tr.us td{background:#fff5f5;font-weight:600}
 .who .langs-switch button.on{background:#fff;color:var(--ink)}
 .login-langs{text-align:center;margin-top:16px;font-size:14px;color:var(--mut)}
 .login-langs a[aria-current]{font-weight:700;color:var(--ink);text-decoration:none}
+
+/* sponsor spaces on the partner page */
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.slot-page h3{font-size:14px;color:var(--mut);margin-bottom:8px}
+.slot{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:8px;background:#fff;margin-bottom:8px;cursor:pointer;font-weight:400}
+.slot:hover{border-color:#cdbfbc}
+.slot input{width:20px;height:20px;margin-top:2px;flex-shrink:0}
+.slot b{display:block;font-size:15px}
+.slot small{display:block;font-size:13px;color:var(--mut);line-height:1.4}
+.slot small.taken{color:var(--warn)}
+.slot:has(input:checked){border-color:var(--red);background:#fff7f7}
+@media (max-width:860px){.slots{grid-template-columns:1fr}}
+.slot .repl{display:none}.slot:has(input:checked) .repl{display:inline}
