@@ -26,6 +26,7 @@ Nel database: notizie (EN + PT, bozza/pubblicata), competizioni e partite, class
 ## Pannello di gestione (`/admin`)
 
 Login con email e password (account in D1, sessioni con cookie, blocco dopo 8 tentativi falliti).
+Il pannello è in italiano e portoghese (`src/admin/i18n.js`): ogni persona ha la sua lingua, cambiabile con il selettore IT/PT in alto.
 Sezioni: Notizie (bozza, anteprima, pubblicazione solo con EN + PT, pulsante "Traduci" con AI,
 foto caricate su R2), Partite (risultati per giornata, classifica automatica, spareggio manuale,
 nuove partite), Partner (loghi, ordine, posizioni degli sponsor sul sito), Account.

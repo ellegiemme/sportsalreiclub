@@ -1,5 +1,28 @@
 // Sal Rei site admin: editor, image upload, AI translation, confirmations.
 (function () {
+  var MSG = {
+    it: {
+      linkUrl: 'Indirizzo del link (https://…)', uploading: 'Caricamento in corso…', uploaded: 'Caricata. Ricordati di salvare.',
+      uploadFailed: 'Caricamento non riuscito. Usa una foto JPG o PNG sotto i 10 MB.', noPhoto: 'Nessuna foto: verrà mostrata la grafica',
+      removed: 'Foto tolta. Ricordati di salvare.', writeFirst: 'Scrivi prima il testo nell’altra lingua.',
+      replace: 'Sostituire il testo già scritto in questa lingua con la traduzione?', translating: 'Traduzione in corso…',
+      translated: 'Tradotto ✓ — rileggi e salva', failed: 'Traduzione non riuscita. Riprova tra poco.',
+      'missing-key': 'La traduzione automatica non è ancora attiva: manca la chiave ANTHROPIC_API_KEY su Cloudflare.',
+      refused: 'Il servizio di traduzione non ha tradotto questo testo. Prova a tradurlo a mano.',
+      'too-long': 'Il testo è troppo lungo per una traduzione sola. Prova a dividerlo.'
+    },
+    pt: {
+      linkUrl: 'Endereço da ligação (https://…)', uploading: 'A carregar…', uploaded: 'Carregada. Não se esqueça de guardar.',
+      uploadFailed: 'Não foi possível carregar. Use uma fotografia JPG ou PNG com menos de 10 MB.', noPhoto: 'Sem fotografia: será mostrado o gráfico',
+      removed: 'Fotografia retirada. Não se esqueça de guardar.', writeFirst: 'Escreva primeiro o texto na outra língua.',
+      replace: 'Substituir o texto já escrito nesta língua pela tradução?', translating: 'A traduzir…',
+      translated: 'Traduzido ✓ — reveja e guarde', failed: 'Não foi possível traduzir. Tente novamente daqui a pouco.',
+      'missing-key': 'A tradução automática ainda não está ativa: falta a chave ANTHROPIC_API_KEY no Cloudflare.',
+      refused: 'O serviço de tradução não traduziu este texto. Traduza-o manualmente.',
+      'too-long': 'O texto é demasiado longo para uma só tradução. Experimente dividi-lo.'
+    }
+  };
+  var T = MSG[document.body.getAttribute('data-lang')] || MSG.it;
   // Confirm destructive buttons.
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-confirm]');
@@ -36,7 +59,7 @@
       var ed = b.closest('.field').querySelector('.editor');
       ed.focus();
       if (cmd === 'link') {
-        var url = prompt('Indirizzo del link (https://…)');
+        var url = prompt(T.linkUrl);
         if (url && /^https?:\/\//.test(url)) document.execCommand('createLink', false, url);
         return;
       }
@@ -82,7 +105,7 @@
       var f = fileInput.files[0];
       if (!f) return;
       var kind = fileInput.getAttribute('data-kind') || 'news';
-      status.textContent = 'Caricamento in corso…';
+      status.textContent = T.uploading;
       resize(f, kind === 'logo' ? 800 : 2000).then(function (small) {
         var data = new FormData();
         data.append('file', small);
@@ -93,17 +116,17 @@
         hidden.value = res.url;
         preview.style.backgroundImage = "url('" + res.url + "')";
         preview.textContent = '';
-        status.textContent = 'Caricata. Ricordati di salvare.';
+        status.textContent = T.uploaded;
         dirty = true;
       }).catch(function () {
-        status.textContent = 'Caricamento non riuscito. Usa una foto JPG o PNG sotto i 10 MB.';
+        status.textContent = T.uploadFailed;
       });
     });
   }
   var remove = document.getElementById('img-remove');
   if (remove) remove.addEventListener('click', function () {
-    hidden.value = ''; preview.style.backgroundImage = ''; preview.textContent = 'Nessuna foto: verrà mostrata la grafica';
-    status.textContent = 'Foto tolta. Ricordati di salvare.'; dirty = true;
+    hidden.value = ''; preview.style.backgroundImage = ''; preview.textContent = T.noPhoto;
+    status.textContent = T.removed; dirty = true;
   });
   var pos = document.getElementById('image_pos');
   if (pos && preview) pos.addEventListener('change', function () { preview.style.backgroundPosition = pos.value; });
@@ -131,30 +154,25 @@
     }
     sync(); dirty = true;
   }
-  var ERR = {
-    'missing-key': 'La traduzione automatica non è ancora attiva: manca la chiave ANTHROPIC_API_KEY su Cloudflare.',
-    refused: 'Il servizio di traduzione non ha tradotto questo testo. Prova a tradurlo a mano.',
-    'too-long': 'Il testo è troppo lungo per una traduzione sola. Prova a dividerlo.',
-  };
   document.querySelectorAll('[data-translate]').forEach(function (b) {
     b.addEventListener('click', function () {
       var parts = b.getAttribute('data-translate').split(':'), from = parts[0], to = parts[1];
       var src = collect(from);
-      if (!src.title.trim() && !src.body.replace(/<[^>]+>/g, '').trim()) { alert('Scrivi prima il testo nell’altra lingua.'); return; }
+      if (!src.title.trim() && !src.body.replace(/<[^>]+>/g, '').trim()) { alert(T.writeFirst); return; }
       var target = collect(to);
-      if ((target.title.trim() || target.body.replace(/<[^>]+>/g, '').trim()) && !confirm('Sostituire il testo già scritto in questa lingua con la traduzione?')) return;
+      if ((target.title.trim() || target.body.replace(/<[^>]+>/g, '').trim()) && !confirm(T.replace)) return;
       var label = b.textContent;
-      b.disabled = true; b.textContent = 'Traduzione in corso…';
+      b.disabled = true; b.textContent = T.translating;
       fetch('/admin/api/traduci', { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ from: from, to: to, fields: src }) })
         .then(function (r) { return r.json(); })
         .then(function (res) {
           if (!res.fields) throw new Error(res.error || 'failed');
           fill(to, res.fields);
-          b.textContent = 'Tradotto ✓ — rileggi e salva';
+          b.textContent = T.translated;
           setTimeout(function () { b.textContent = label; b.disabled = false; }, 4000);
         })
         .catch(function (e) {
-          alert(ERR[e.message] || 'Traduzione non riuscita. Riprova tra poco.');
+          alert(T[e.message] || T.failed);
           b.textContent = label; b.disabled = false;
         });
     });

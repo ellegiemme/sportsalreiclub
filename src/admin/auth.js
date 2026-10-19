@@ -66,7 +66,7 @@ function readCookie(request) {
 export async function currentUser(db, request) {
   const token = readCookie(request);
   if (!token) return null;
-  return db.prepare(`SELECT u.id, u.email, u.name, u.is_owner FROM admin_sessions s JOIN admin_users u ON u.id = s.user_id
+  return db.prepare(`SELECT u.id, u.email, u.name, u.is_owner, u.lang FROM admin_sessions s JOIN admin_users u ON u.id = s.user_id
     WHERE s.token_hash = ? AND s.expires_at > datetime('now')`).bind(await sha256(token)).first();
 }
 

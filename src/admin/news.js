@@ -1,11 +1,11 @@
 import { html, raw } from '../lib/html.js';
 import { sanitize } from '../lib/sanitize.js';
 import { today } from '../lib/db.js';
-import { adminPage, htmlResponse, redirect, itDate } from './ui.js';
+import { adminPage, htmlResponse, redirect } from './ui.js';
+import { adminT, adminDate } from './i18n.js';
 
-const CATEGORIES = [['club', 'Club'], ['first-team', 'Prima squadra'], ['academy', 'Accademia'], ['history', 'Storia'], ['regional', 'Calcio regionale'], ['cape-verde', 'Capo Verde']];
-const POSITIONS = [['center 30%', 'Alto'], ['center 50%', 'Centro'], ['center 70%', 'Basso']];
-const LANG_LABEL = { pt: 'Portoghese', en: 'Inglese' };
+const CATEGORIES = ['club', 'first-team', 'academy', 'history', 'regional', 'cape-verde'];
+const POSITIONS = ['center 30%', 'center 50%', 'center 70%'];
 
 const plain = (s) => String(s || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 const isComplete = (n, l) => !!(String(n[`title_${l}`] || '').trim() && plain(n[`body_${l}`]));
@@ -38,20 +38,22 @@ function parseFacts(form, l) {
 // ---------- list ----------
 
 export async function listNews({ db, user, url }) {
+  const L = adminT(user.lang), N = L.news;
   const { results } = await db.prepare(`SELECT id, slug, status, date, category, image, gfx_big, title_pt, title_en, body_pt, body_en
     FROM news ORDER BY (status = 'draft') DESC, date DESC, id DESC`).all();
-  const body = html`<div class="head"><div><h1>Notizie</h1><p>Le bozze sono visibili solo qui. Pubblica quando titolo e testo sono pronti in tutte e due le lingue.</p></div>
-  <form method="post" action="/admin/notizie/nuova"><button class="btn primary" type="submit">+ Nuova notizia</button></form></div>
+  const title = (n) => n.title_pt || n.title_en || N.untitled;
+  const body = html`<div class="head"><div><h1>${N.title}</h1><p>${N.intro}</p></div>
+  <form method="post" action="/admin/notizie/nuova"><button class="btn primary" type="submit">${N.add}</button></form></div>
   <div class="list">
   ${results.map((n) => html`<a class="row" href="/admin/notizie/${n.id}">
     ${n.image ? html`<img class="thumb" src="${n.image}" alt="">` : html`<span class="thumb">${n.gfx_big || '—'}</span>`}
-    <span class="grow"><span class="t">${n.title_pt || n.title_en || 'Senza titolo'}</span>
-    <span class="s">${itDate(n.date)} · ${CATEGORIES.find((c) => c[0] === n.category)?.[1] || n.category}
-      ${!isComplete(n, 'pt') ? html` · <span class="pill miss">manca PT</span>` : ''}${!isComplete(n, 'en') ? html` · <span class="pill miss">manca EN</span>` : ''}</span></span>
-    <span class="pill ${n.status === 'published' ? 'pub' : 'draft'}">${n.status === 'published' ? 'Pubblicata' : 'Bozza'}</span>
+    <span class="grow"><span class="t">${title(n)}</span>
+    <span class="s">${adminDate(L, n.date)} · ${N.categories[n.category] || n.category}
+      ${!isComplete(n, 'pt') ? html` · <span class="pill miss">${N.missing} PT</span>` : ''}${!isComplete(n, 'en') ? html` · <span class="pill miss">${N.missing} EN</span>` : ''}</span></span>
+    <span class="pill ${n.status === 'published' ? 'pub' : 'draft'}">${n.status === 'published' ? N.published : N.draft}</span>
   </a>`)}
   </div>`;
-  return htmlResponse(adminPage({ user, active: 'news', title: 'Notizie', body, url }));
+  return htmlResponse(adminPage({ user, active: 'news', title: N.title, body, url }));
 }
 
 export async function createNews({ db }) {
@@ -62,79 +64,82 @@ export async function createNews({ db }) {
 
 // ---------- editor ----------
 
-function langColumn(n, l) {
+function langColumn(N, n, l) {
   const other = l === 'pt' ? 'en' : 'pt';
+  const T = N.tools;
   const facts = (() => { try { return JSON.parse(n[`facts_${l}`] || '[]'); } catch { return []; } })();
   return html`<section class="lang-col${isComplete(n, l) ? '' : ' missing'}" data-lang="${l}">
-  <h2><span><span class="flag">${l.toUpperCase()}</span>${LANG_LABEL[l]}</span>
-    <button class="btn small" type="button" data-translate="${other}:${l}">Traduci dal${other === 'pt' ? ' portoghese' : 'l’inglese'}</button></h2>
-  <div class="field"><label for="title_${l}">Titolo</label><input id="title_${l}" name="title_${l}" type="text" value="${n[`title_${l}`] || ''}" maxlength="140"></div>
-  <div class="field"><label>Testo <span class="hint">— il primo paragrafo è l’introduzione in evidenza</span></label>
-    <div class="tools" role="toolbar" aria-label="Formattazione">
-      <button type="button" data-cmd="formatBlock" data-arg="p" title="Paragrafo">¶</button>
-      <button type="button" data-cmd="formatBlock" data-arg="h2" title="Sottotitolo">Sottotitolo</button>
-      <button type="button" data-cmd="bold" title="Grassetto"><b>G</b></button>
-      <button type="button" data-cmd="italic" title="Corsivo"><i>C</i></button>
-      <button type="button" data-cmd="insertUnorderedList" title="Elenco">• Elenco</button>
-      <button type="button" data-cmd="link" title="Link">Link</button>
+  <h2><span><span class="flag">${l.toUpperCase()}</span>${N.langs[l]}</span>
+    <button class="btn small" type="button" data-translate="${other}:${l}">${N.translateFrom[other]}</button></h2>
+  <div class="field"><label for="title_${l}">${N.headline}</label><input id="title_${l}" name="title_${l}" type="text" value="${n[`title_${l}`] || ''}" maxlength="140"></div>
+  <div class="field"><label>${N.body} <span class="hint">${N.bodyHint}</span></label>
+    <div class="tools" role="toolbar" aria-label="${T.toolbar}">
+      <button type="button" data-cmd="formatBlock" data-arg="p" title="${T.p}">¶</button>
+      <button type="button" data-cmd="formatBlock" data-arg="h2" title="${T.h2}">${T.h2}</button>
+      <button type="button" data-cmd="bold" title="${T.bold}"><b>${T.boldKey}</b></button>
+      <button type="button" data-cmd="italic" title="${T.italic}"><i>${T.italicKey}</i></button>
+      <button type="button" data-cmd="insertUnorderedList" title="${T.list}">${T.list}</button>
+      <button type="button" data-cmd="link" title="${T.link}">${T.link}</button>
     </div>
-    <div class="editor" contenteditable="true" data-for="body_${l}" data-placeholder="Scrivi qui il testo della notizia…">${raw(sanitize(n[`body_${l}`] || ''))}</div>
+    <div class="editor" contenteditable="true" data-for="body_${l}" data-placeholder="${N.placeholder}">${raw(sanitize(n[`body_${l}`] || ''))}</div>
     <textarea name="body_${l}" class="sr" aria-hidden="true" tabindex="-1">${n[`body_${l}`] || ''}</textarea>
   </div>
-  <div class="field"><label for="excerpt_${l}">Riassunto <span class="hint">(facoltativo — se vuoto si usa l’inizio del testo)</span></label><textarea id="excerpt_${l}" name="excerpt_${l}" rows="2">${n[`excerpt_${l}`] || ''}</textarea></div>
-  <div class="field"><label for="pull_${l}">Frase in evidenza <span class="hint">(facoltativa, a lato del testo)</span></label><input id="pull_${l}" name="pull_${l}" type="text" value="${n[`pull_${l}`] || ''}"></div>
-  <div class="field"><label>Dati in breve <span class="hint">(facoltativi, es. “Stagione” → “2026/27”)</span></label>
-    ${[0, 1, 2].map((i) => html`<div class="facts-row"><input type="text" name="fact_k_${l}_${i}" placeholder="Voce" value="${facts[i]?.[0] || ''}" aria-label="Voce ${i + 1}"><input type="text" name="fact_v_${l}_${i}" placeholder="Valore" value="${facts[i]?.[1] || ''}" aria-label="Valore ${i + 1}"></div>`)}
+  <div class="field"><label for="excerpt_${l}">${N.excerpt} <span class="hint">${N.excerptHint}</span></label><textarea id="excerpt_${l}" name="excerpt_${l}" rows="2">${n[`excerpt_${l}`] || ''}</textarea></div>
+  <div class="field"><label for="pull_${l}">${N.pull} <span class="hint">${N.pullHint}</span></label><input id="pull_${l}" name="pull_${l}" type="text" value="${n[`pull_${l}`] || ''}"></div>
+  <div class="field"><label>${N.facts} <span class="hint">${N.factsHint}</span></label>
+    ${[0, 1, 2].map((i) => html`<div class="facts-row"><input type="text" name="fact_k_${l}_${i}" placeholder="${N.factKey}" value="${facts[i]?.[0] || ''}" aria-label="${N.factKey} ${i + 1}"><input type="text" name="fact_v_${l}_${i}" placeholder="${N.factValue}" value="${facts[i]?.[1] || ''}" aria-label="${N.factValue} ${i + 1}"></div>`)}
   </div>
-  <div class="field"><label for="gfx_cap_${l}">Didascalia della grafica <span class="hint">(se non c’è la foto)</span></label><input id="gfx_cap_${l}" name="gfx_cap_${l}" type="text" value="${n[`gfx_cap_${l}`] || ''}"></div>
+  <div class="field"><label for="gfx_cap_${l}">${N.gfxCap} <span class="hint">${N.gfxCapHint}</span></label><input id="gfx_cap_${l}" name="gfx_cap_${l}" type="text" value="${n[`gfx_cap_${l}`] || ''}"></div>
 </section>`;
 }
 
 export async function editNews({ db, user, url, id }) {
+  const L = adminT(user.lang), N = L.news;
   const n = await db.prepare('SELECT * FROM news WHERE id = ?').bind(id).first();
   if (!n) return redirect('/admin/notizie');
   const published = n.status === 'published';
   const live = published ? `/pt/news/${n.slug}` : null;
-  const body = html`<a class="crumb" href="/admin/notizie">← Tutte le notizie</a>
-<div class="head"><div><h1>${n.title_pt || n.title_en || 'Nuova notizia'}</h1>
-  <p><span class="pill ${published ? 'pub' : 'draft'}">${published ? 'Pubblicata' : 'Bozza'}</span>${live ? html` · <a href="${live}" target="_blank" rel="noopener">vedi sul sito</a>` : ''}</p></div></div>
+  const heading = n.title_pt || n.title_en || N.newTitle;
+  const body = html`<a class="crumb" href="/admin/notizie">${N.all}</a>
+<div class="head"><div><h1>${heading}</h1>
+  <p><span class="pill ${published ? 'pub' : 'draft'}">${published ? N.published : N.draft}</span>${live ? html` · <a href="${live}" target="_blank" rel="noopener">${N.viewLive}</a>` : ''}</p></div></div>
 <form method="post" id="news-form" data-news-id="${n.id}">
   <div class="panel">
     <div class="grid3">
-      <div class="field"><label for="date">Data</label><input id="date" name="date" type="date" value="${n.date}" required></div>
-      <div class="field"><label for="category">Categoria</label><select id="category" name="category">${CATEGORIES.map(([v, l]) => html`<option value="${v}"${v === n.category ? raw(' selected') : ''}>${l}</option>`)}</select></div>
-      <div class="field"><label for="gfx_big">Grafica senza foto <span class="hint">(numero o parola corta)</span></label><input id="gfx_big" name="gfx_big" type="text" maxlength="8" value="${n.gfx_big || ''}" placeholder="es. 2004"></div>
+      <div class="field"><label for="date">${N.date}</label><input id="date" name="date" type="date" value="${n.date}" required></div>
+      <div class="field"><label for="category">${N.category}</label><select id="category" name="category">${CATEGORIES.map((v) => html`<option value="${v}"${v === n.category ? raw(' selected') : ''}>${N.categories[v]}</option>`)}</select></div>
+      <div class="field"><label for="gfx_big">${N.gfx} <span class="hint">${N.gfxHint}</span></label><input id="gfx_big" name="gfx_big" type="text" maxlength="8" value="${n.gfx_big || ''}" placeholder="${N.gfxPh}"></div>
     </div>
-    <label>Foto</label>
+    <label>${N.photo}</label>
     <div class="imgbox">
-      <div class="preview" id="img-preview" style="${n.image ? `background-image:url('${n.image}');background-position:${n.image_pos || 'center'}` : ''}">${n.image ? '' : 'Nessuna foto: verrà mostrata la grafica'}</div>
+      <div class="preview" id="img-preview" style="${n.image ? `background-image:url('${n.image}');background-position:${n.image_pos || 'center'}` : ''}">${n.image ? '' : N.noPhoto}</div>
       <div>
         <input type="hidden" name="image" id="image" value="${n.image || ''}">
         <div class="actions">
-          <label class="btn" for="img-file" style="margin:0">Carica foto…</label>
+          <label class="btn" for="img-file" style="margin:0">${N.upload}</label>
           <input class="sr" type="file" id="img-file" accept="image/jpeg,image/png,image/webp">
-          ${n.image ? html`<button class="btn ghost" type="button" id="img-remove">Togli foto</button>` : ''}
+          ${n.image ? html`<button class="btn ghost" type="button" id="img-remove">${N.removePhoto}</button>` : ''}
         </div>
-        <p class="hint mt" id="img-status">JPG o PNG. La foto viene ridimensionata automaticamente.</p>
-        <div class="field mt"><label for="image_pos">Inquadratura</label><select id="image_pos" name="image_pos">${POSITIONS.map(([v, l]) => html`<option value="${v}"${v === (n.image_pos || 'center 50%') ? raw(' selected') : ''}>${l}</option>`)}</select></div>
+        <p class="hint mt" id="img-status">${N.photoHint}</p>
+        <div class="field mt"><label for="image_pos">${N.framing}</label><select id="image_pos" name="image_pos">${POSITIONS.map((v) => html`<option value="${v}"${v === (n.image_pos || 'center 50%') ? raw(' selected') : ''}>${N.positions[v]}</option>`)}</select></div>
       </div>
     </div>
   </div>
   <div class="langs mt">
-    ${langColumn(n, 'pt')}
-    ${langColumn(n, 'en')}
+    ${langColumn(N, n, 'pt')}
+    ${langColumn(N, n, 'en')}
   </div>
   <div class="bar">
-    <button class="btn dark" type="submit" name="action" value="save">Salva bozza</button>
-    <button class="btn" type="submit" name="action" value="preview" formtarget="_blank">Anteprima</button>
+    <button class="btn dark" type="submit" name="action" value="save">${N.save}</button>
+    <button class="btn" type="submit" name="action" value="preview" formtarget="_blank">${N.preview}</button>
     <span class="spacer"></span>
     ${published
-      ? html`<button class="btn" type="submit" name="action" value="unpublish">Ritira dal sito</button><button class="btn primary" type="submit" name="action" value="publish">Salva e aggiorna il sito</button>`
-      : html`<button class="btn primary" type="submit" name="action" value="publish">Pubblica</button>`}
-    <button class="btn danger" type="submit" name="action" value="delete" data-confirm="Eliminare definitivamente questa notizia?">Elimina</button>
+      ? html`<button class="btn" type="submit" name="action" value="unpublish">${N.unpublish}</button><button class="btn primary" type="submit" name="action" value="publish">${N.update}</button>`
+      : html`<button class="btn primary" type="submit" name="action" value="publish">${N.publish}</button>`}
+    <button class="btn danger" type="submit" name="action" value="delete" data-confirm="${N.confirmDelete}">${N.delete}</button>
   </div>
 </form>`;
-  return htmlResponse(adminPage({ user, active: 'news', title: n.title_pt || 'Notizia', body, url }));
+  return htmlResponse(adminPage({ user, active: 'news', title: heading, body, url }));
 }
 
 export async function saveNews({ db, id, form }) {
@@ -157,10 +162,10 @@ export async function saveNews({ db, id, form }) {
     v[`facts_${l}`] = f.length ? JSON.stringify(f) : null;
   }
   const date = /^\d{4}-\d{2}-\d{2}$/.test(form.get('date')) ? form.get('date') : n.date;
-  const category = CATEGORIES.some((c) => c[0] === form.get('category')) ? form.get('category') : 'club';
+  const category = CATEGORIES.includes(form.get('category')) ? form.get('category') : 'club';
   const image = String(form.get('image') || '').trim();
   v.image = /^\/(media|assets)\//.test(image) ? image : null;
-  v.image_pos = POSITIONS.some((p) => p[0] === form.get('image_pos')) ? form.get('image_pos') : null;
+  v.image_pos = POSITIONS.includes(form.get('image_pos')) ? form.get('image_pos') : null;
   v.gfx_big = String(form.get('gfx_big') || '').trim().slice(0, 8) || null;
   const words = plain(v.body_pt || v.body_en).split(' ').filter(Boolean).length;
   v.read_min = Math.max(1, Math.round(words / 200));
