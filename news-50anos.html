@@ -1,0 +1,563 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fifty years of the Cape Verde Championship — and Sal Rei on the roll of honour — Sport Sal Rei Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css">
+<style>
+:root{
+  --red:#D01E28; --red2:#B4161F; --deep:#7A0F16;
+  --gold:#F5B400; --gold2:#D89A00;
+  --night:#120507; --night2:#1C090C; --panel:#22090D;
+  --line:rgba(255,255,255,.09);
+  --txt:#F4F1F2; --mut:#B49399;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--night);color:var(--txt);-webkit-font-smoothing:antialiased;line-height:1.55}
+h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;text-transform:uppercase;font-weight:400;letter-spacing:.02em;line-height:.98}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1600px;margin:0 auto;padding:0 28px}
+.section{padding:150px 0}
+.sec-h{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:26px}
+.sec-h h2{font-size:40px;letter-spacing:.025em}
+.sec-eyebrow{display:block;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.sec-h a{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;display:flex;gap:7px;align-items:center;transition:.2s}
+.sec-h a:hover{gap:11px}
+
+.hd{position:absolute;top:0;left:0;right:0;z-index:200;background:transparent}
+.hd .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:104px;gap:34px}
+.hd .logo{justify-self:center;display:flex;align-items:center;flex-shrink:0}
+.hd .logo img{height:78px;filter:drop-shadow(0 4px 18px rgba(0,0,0,.45))}
+.hd nav{display:flex;gap:26px;align-items:center}
+.hd .nav-left{justify-self:start}
+.hd .nav-right{justify-self:end}
+.hd nav a{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--txt);padding:24px 0;position:relative;transition:.2s;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.hd nav a::after{content:"";position:absolute;left:0;right:0;bottom:22px;height:3px;background:var(--gold);transform:scaleX(0);transition:.22s}
+.hd nav a:hover{color:var(--gold)}
+.hd nav a:hover::after{transform:scaleX(1)}
+.hd .right{justify-self:end;display:flex;align-items:center;gap:16px}
+.hd .icn{text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.hd .lang{position:relative}
+.hd .lang-btn{display:flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt);cursor:pointer;padding:8px 4px;background:none;border:none;text-shadow:0 1px 8px rgba(0,0,0,.5);transition:.2s}
+.hd .lang-btn:hover{color:var(--gold)}
+.hd .lang-btn .chev{font-size:15px;transition:transform .22s}
+.hd .lang.open .lang-btn .chev{transform:rotate(180deg)}
+.hd .lang-menu{position:absolute;top:calc(100% + 10px);right:0;min-width:96px;background:var(--night2);border:1px solid rgba(255,255,255,.14);border-radius:6px;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(-8px);transition:.2s;box-shadow:0 16px 40px rgba(0,0,0,.4);z-index:50}
+.hd .lang.open .lang-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.hd .lang-menu a{display:block;padding:11px 16px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt);transition:.15s}
+.hd .lang-menu a:hover{background:var(--red);color:#fff}
+.hd .lang-menu a.active{color:var(--gold)}
+.hd .icn{color:var(--txt);font-size:19px;transition:.2s}
+.hd .icn:hover{color:var(--gold)}
+.hd .tick{font-family:'Inter',sans-serif;background:var(--gold);color:var(--deep);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:9px 18px;border-radius:3px;transition:.2s}
+.hd .tick:hover{background:#fff}
+
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:#0a0304 url('assets/img/hero-stadium.jpg') center bottom/cover no-repeat}
+.hero::before{content:none}
+.hero::after{content:none}
+.hero .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,3,4,.85) 0%,rgba(10,3,4,.30) 38%,transparent 65%)}
+.hero .inner{position:relative;z-index:3;padding:0 0 64px;width:100%;max-width:720px;text-align:left;margin-right:auto}
+.hero .kicker{font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--deep);font-weight:700;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:3px;margin-bottom:20px}
+.hero h1{font-size:88px;line-height:.92;letter-spacing:.02em;margin-bottom:22px;text-shadow:0 4px 40px rgba(0,0,0,.55)}
+.hero h1 span{color:var(--gold)}
+.hero .sub{font-size:17px;color:rgba(255,255,255,.85);max-width:460px;margin-bottom:0}
+.hero .acts{display:flex;gap:14px;flex-wrap:wrap}
+.b{font-family:'Inter',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;padding:15px 30px;border-radius:4px;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:9px;transition:.2s}
+.b-gold{background:var(--gold);color:var(--deep)}
+.b-gold:hover{background:#fff;transform:translateY(-2px)}
+.b-line{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.b-red{background:var(--red);color:#fff}
+.b-red:hover{background:var(--red2)}
+.b-line:hover{background:#fff;color:var(--deep);transform:translateY(-2px)}
+
+.nextbar{background:var(--red);color:#fff;position:relative;overflow:hidden}
+.nextbar .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:500px;gap:40px;font-family:'Inter',sans-serif;padding-top:56px;padding-bottom:56px}
+.nextbar .col{display:flex;flex-direction:column;gap:10px}
+.nextbar .col-left{align-items:flex-start;text-align:left}
+.nextbar .col-right{align-items:flex-end;text-align:right}
+.nextbar .lbl{font-size:12px;letter-spacing:.2em;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.nextbar .comp{display:inline-flex;align-items:center;gap:7px;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+.nextbar .comp i{font-size:14px;color:var(--gold)}
+.nextbar .mt{display:flex;align-items:baseline;gap:14px;font-family:'Bebas Neue',sans-serif;text-transform:uppercase;font-size:46px;line-height:.95;letter-spacing:.02em}
+.nextbar .mt .vs{opacity:.6;font-family:'Inter',sans-serif;font-size:16px;font-weight:600;letter-spacing:.05em}
+.nextbar .mt .score{font-size:46px}
+.nextbar .info{display:flex;flex-direction:column;gap:10px;font-size:14px;letter-spacing:.04em;font-weight:500;color:rgba(255,255,255,.9);margin-top:26px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2)}
+.nextbar .col-right .info{align-items:flex-end}
+.nextbar .info span{display:flex;align-items:center;gap:8px}
+.nextbar .go{background:var(--gold);color:var(--deep);padding:11px 22px;border-radius:3px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:.2s;margin-top:6px}
+.nextbar .go:hover{background:#fff}
+.nextbar .crest{display:flex;align-items:center;justify-content:center}
+.nextbar .crest img{height:192px;width:auto;opacity:.96;filter:drop-shadow(0 10px 40px rgba(0,0,0,.25))}
+
+
+.news-sec{padding-bottom:50px}
+.fixtures-sec{padding-top:50px}
+.news-grid{display:grid;grid-template-columns:2fr 1fr;gap:4px;align-items:stretch}
+.feat{position:relative;border-radius:0;overflow:hidden;width:100%;height:100%;min-height:520px;display:flex;align-items:flex-end;background:linear-gradient(135deg,var(--red2),var(--deep));transition:.25s}
+.feat .ph,.nc .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.16)}
+.feat .fg{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9),transparent 72%)}
+.feat .ftx{position:relative;z-index:2;padding:40px}
+.tag{font-family:'Inter',sans-serif;display:inline-flex;align-items:center;background:var(--red);color:#fff;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 13px;border-radius:0;margin-bottom:16px}
+.feat h3{font-size:44px;line-height:.96;letter-spacing:.02em;margin-bottom:14px;max-width:88%}
+.feat .meta,.nc .meta{font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,.6);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.news-side{display:flex;flex-direction:column;gap:4px}
+.nc{position:relative;border-radius:0;overflow:hidden;flex:1;min-height:120px;display:flex;align-items:flex-end;transition:.25s}
+.nc.g1{background:linear-gradient(135deg,var(--night2),var(--deep))}
+.nc.g2{background:linear-gradient(135deg,var(--red2),var(--deep))}
+.nc .pic,.feat .pic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.nc:hover .pic,.feat:hover .pic{transform:scale(1.03)}
+.nc .pic,.feat .pic{transition:transform .35s ease}
+.nc .fg{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9),transparent 72%)}
+.nc .ct{position:relative;z-index:2;padding:26px}
+.nc h3{font-size:27px;line-height:1.0;letter-spacing:.02em;margin-bottom:10px}
+.nc:hover,.feat:hover{filter:brightness(1.08)}
+
+
+.mtabs{display:flex;gap:4px;margin-bottom:22px}
+.mtab{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:9px 20px;border-radius:0;background:#000;border:1px solid var(--line);color:var(--mut);cursor:pointer;transition:.2s}
+.mtab:hover{color:#fff;border-color:rgba(255,255,255,.25)}
+.mtab.on{background:var(--red);color:#fff;border-color:var(--red)}
+.matches{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.match{background:#000;border:1px solid var(--red);border-radius:0;padding:26px 24px;transition:.25s}
+.match:hover{background:var(--red);border-color:var(--red)}
+.match .comp{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:20px;display:flex;justify-content:space-between;transition:.25s}
+.match:hover .comp{color:rgba(255,255,255,.85)}
+.match .teams{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.match .tm{text-align:center;flex:1}
+.match .crest{width:52px;height:52px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:15px;transition:.25s}
+.match .crest.h{background:#fff;color:var(--red)}
+.match .crest.a{background:var(--night2);color:#fff;border:1px solid var(--line)}
+.match:hover .crest.a{background:var(--deep);border-color:rgba(255,255,255,.3)}
+.match .tm .nm{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+.match .cvs{font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:13px;padding:0 8px;text-align:center;transition:.25s}
+.match:hover .cvs{color:#fff}
+.match .cvs .h2{display:block;font-size:30px;letter-spacing:.02em;color:#fff;margin-top:2px}
+.match .mfoot{font-family:'Inter',sans-serif;font-size:11.5px;color:var(--mut);text-align:center;padding-top:16px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:7px;transition:.25s}
+.match:hover .mfoot{color:rgba(255,255,255,.85);border-top-color:rgba(255,255,255,.25)}
+
+.shop-band{background:#fff}
+.about-band{background:#fff}
+.about{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4px;height:650px;align-items:stretch;overflow:hidden}
+.about .visual{min-height:0}
+.about .txt{background:#000;display:flex;flex-direction:column;justify-content:flex-start;padding:64px}
+.about .eyebrow{font-family:'Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.about h2{font-size:54px;color:#fff;line-height:.94;letter-spacing:.02em;margin-bottom:22px}
+.about p{font-family:'Inter',sans-serif;font-size:15.5px;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:16px;max-width:560px}
+.about .cta{display:inline-flex;align-items:center;gap:10px;margin-top:30px;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--red);padding:16px 30px;border-radius:4px;transition:.2s;align-self:flex-start}
+.about .cta:hover{background:var(--red2)}
+.about .cta i{font-size:17px;transition:transform .2s}
+.about .cta:hover i{transform:translateX(4px)}
+.about .visual{background:var(--red);overflow:hidden;padding:0}
+.about .visual img{width:100%;height:100%;object-fit:cover;object-position:center 27%;display:block}
+.shop{height:800px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4px;overflow:hidden}
+.shop > *{min-height:0;min-width:0}
+.shop .img{position:relative;overflow:hidden;background:#c0000f}
+.shop .img img{width:100%;height:100%;object-fit:cover;display:block}
+.shop .left{display:grid;grid-template-rows:2fr 1fr;min-height:0;gap:4px}
+.shop .left > *{min-height:0;overflow:hidden}
+.shop .promo{position:relative;background:var(--red);display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:40px 46px;gap:16px;overflow:hidden;cursor:pointer;text-decoration:none;transition:background .2s}
+.shop .promo:hover{background:var(--red2)}
+.shop .promo .kbadge{font-family:'Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.shop .promo h2{font-size:52px;color:#fff;line-height:.9;letter-spacing:.02em;text-align:left;white-space:nowrap}
+.shop .carousel{position:relative;overflow:hidden}
+.shop .carousel .slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+.shop .carousel .slide.active{opacity:1}
+.shop .carousel .slide img{width:100%;height:100%;object-fit:cover;display:block}
+.shop .carousel .dots{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+.shop .carousel .dots button{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,.45);cursor:pointer;padding:0;transition:.2s}
+.shop .carousel .dots button.active{background:#fff;width:22px;border-radius:4px}
+
+.acad-sec{background:#fff}
+.acad-head{max-width:640px;margin-bottom:44px}
+.acad-head .eyebrow{font-family:'Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:16px;display:block}
+.acad-head h2{font-size:60px;color:var(--night);line-height:.94;margin-bottom:20px}
+.acad-head p{font-family:'Inter',sans-serif;font-size:15.5px;line-height:1.7;color:#3a2b2d}
+.acad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.acad-cat{background:var(--red);color:#fff;padding:38px 32px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;transition:.25s}
+.acad-cat:hover{background:var(--red2)}
+.acad-cat .cat{font-family:'Bebas Neue',sans-serif;font-size:88px;line-height:.82;letter-spacing:.01em}
+.acad-cat .desc{font-family:'Inter',sans-serif;font-size:14px;color:rgba(255,255,255,.85);line-height:1.6}
+.acad-cat .desc b{color:#fff}
+.palm-sec{background:#000}
+.palm{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.tr{background:#000;border:1px solid var(--red);border-radius:0;padding:34px 34px 34px 26px;transition:.25s;position:relative;overflow:hidden;height:375px;display:flex;flex-direction:column;justify-content:space-between}
+.tr:hover{background:var(--red);border-color:var(--red)}
+.tr-b{text-align:right}
+.tr .big{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:120px;letter-spacing:0;color:var(--gold);line-height:.85;transition:.25s}
+.tr:hover .big{color:#fff}
+.tr .tl{font-family:'Inter',sans-serif;font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:var(--txt);font-weight:600;margin-top:10px;margin-right:-.05em;transition:.25s}
+.tr:hover .tl{color:#fff}
+.tr i{position:static;font-size:42px;color:rgba(245,180,0,.35);transition:.25s}
+.tr:hover i{color:rgba(255,255,255,.85)}
+.tr .cup{width:46px;height:46px;color:rgba(245,180,0,.55);transition:.25s;display:block}
+.tr:hover .cup{color:#fff}
+
+.more{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.mcard{position:relative;border-radius:0;overflow:hidden;min-height:230px;display:flex;align-items:flex-end;transition:.25s;cursor:pointer}
+.mcard:hover{filter:brightness(1.08)}
+.mcard.m1{background:linear-gradient(135deg,var(--red2),var(--deep))}
+.mcard.m2{background:linear-gradient(135deg,var(--night2),var(--red2))}
+.mcard.m3{background:linear-gradient(135deg,var(--deep),var(--gold2))}
+.mcard .fg{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,3,4,.9),transparent 65%)}
+.mcard .mc-in{position:relative;z-index:2;padding:24px}
+.mcard h3{font-size:30px;letter-spacing:.02em;margin-bottom:8px}
+.mcard p{font-family:'Inter',sans-serif;font-size:13px;color:var(--mut);margin-bottom:12px;line-height:1.5}
+.mcard .lk{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;display:flex;gap:6px;align-items:center}
+
+.forza{background:var(--red);text-align:center;padding:44px 0}
+.forza h2{font-size:84px;color:#fff;letter-spacing:.04em}
+.social{background:var(--night2);padding:26px 0;border-bottom:1px solid var(--line)}
+.social .wrap{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.social a{width:42px;height:42px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;color:var(--txt);font-size:19px;transition:.2s;border:1px solid var(--line)}
+.social a:hover{background:var(--gold);color:var(--deep);border-color:var(--gold)}
+.ft{background:var(--night);padding:48px 0 0}
+.ft-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px;padding-bottom:36px;border-bottom:1px solid var(--line)}
+.ft-brand img{height:70px;margin-bottom:16px}
+.ft-brand p{font-family:'Inter',sans-serif;font-size:13px;color:var(--mut);max-width:270px;line-height:1.7}
+.ft h4{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:15px}
+.ft ul{list-style:none}
+.ft ul li{margin-bottom:11px}
+.ft ul li a{font-family:'Inter',sans-serif;font-size:13px;color:var(--mut);transition:.2s}
+.ft ul li a:hover{color:var(--gold)}
+.ft-bot{font-family:'Inter',sans-serif;padding:20px 0;display:flex;justify-content:space-between;font-size:12px;color:var(--mut);flex-wrap:wrap;gap:10px}
+
+@media(max-width:980px){
+  .section{padding:70px 0}
+  .hd nav{display:none}
+  .hero h1{font-size:58px}
+  .news-grid{grid-template-columns:1fr}
+  .matches{grid-template-columns:1fr}
+  .palm{grid-template-columns:1fr 1fr}
+  .more{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .nextbar .wrap{grid-template-columns:1fr;justify-items:center;text-align:center;min-height:auto;gap:30px;padding-top:48px;padding-bottom:48px}
+  .nextbar .col-left,.nextbar .col-right{align-items:center;text-align:center}
+  .nextbar .col-right{order:3}
+  .nextbar .crest{order:2}
+  .nextbar .crest img{height:200px}
+  .nextbar .col-right .info{align-items:center}
+  .nextbar .mt{font-size:36px}
+  .forza h2{font-size:44px}
+}
+</style><style>
+/* ---- news index ---- */
+.news-hero{position:relative;padding:190px 0 60px;background:linear-gradient(135deg,var(--night) 0%,var(--night2) 45%,var(--deep) 130%);overflow:hidden;border-bottom:3px solid var(--red)}
+.news-hero::after{content:"";position:absolute;right:-140px;top:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(208,30,40,.28),transparent 68%)}
+.news-hero .inner{position:relative;z-index:2}
+.news-hero .kicker{font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--deep);font-weight:700;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:3px;margin-bottom:20px}
+.news-hero h1{font-size:76px;line-height:.92;letter-spacing:.02em;text-shadow:0 4px 40px rgba(0,0,0,.55)}
+.news-hero h1 span{color:var(--gold)}
+
+.filter-row{display:flex;gap:4px;margin-bottom:34px;flex-wrap:wrap}
+.filter{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:9px 20px;background:#000;border:1px solid var(--line);color:var(--mut);cursor:pointer;transition:.2s}
+.filter:hover{color:#fff;border-color:rgba(255,255,255,.25)}
+.filter.on{background:var(--red);color:#fff;border-color:var(--red)}
+
+.art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.acard{position:relative;display:flex;flex-direction:column;background:#000;border:1px solid var(--line);overflow:hidden;transition:.25s;min-height:420px}
+.acard:hover{border-color:var(--gold);transform:translateY(-4px)}
+.acard .ph{position:relative;height:230px;overflow:hidden;background:linear-gradient(135deg,var(--red2),var(--deep))}
+.acard .ph img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.acard:hover .ph img{transform:scale(1.05)}
+.acard .ph .silo{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.16);font-size:52px}
+.acard .body{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
+.acard .tag{font-family:'Inter',sans-serif;align-self:flex-start;background:var(--red);color:#fff;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;margin-bottom:14px}
+.acard h3{font-size:25px;line-height:1.02;letter-spacing:.01em;margin-bottom:12px}
+.acard p{font-family:'Inter',sans-serif;font-size:13.5px;color:var(--mut);line-height:1.6;margin-bottom:18px;flex:1}
+.acard .meta{font-family:'Inter',sans-serif;font-size:11.5px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:8px}
+.acard .meta .dot{width:3px;height:3px;border-radius:50%;background:var(--mut)}
+
+/* ---- article page ---- */
+.art-hero{position:relative;min-height:560px;display:flex;align-items:flex-end;overflow:hidden;border-bottom:3px solid var(--red)}
+.art-hero .bg{position:absolute;inset:0;z-index:0}
+.art-hero .bg img{width:100%;height:100%;object-fit:cover}
+.art-hero .bg .silo{width:100%;height:100%;background:linear-gradient(135deg,var(--red2),var(--deep));display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.14);font-size:80px}
+.art-hero .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.55) 34%,rgba(0,0,0,.15) 66%,rgba(0,0,0,.35) 100%)}
+.art-hero .inner{position:relative;z-index:2;padding:0 0 56px;width:100%}
+.art-hero .tag{font-family:'Inter',sans-serif;display:inline-block;background:var(--red);color:#fff;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;margin-bottom:20px}
+.art-hero h1{font-size:64px;line-height:.98;letter-spacing:.02em;max-width:1000px;text-shadow:0 4px 30px rgba(0,0,0,.5)}
+.art-hero .sub-meta{font-family:'Inter',sans-serif;margin-top:22px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;display:flex;align-items:center;gap:12px}
+.art-hero .sub-meta .dot{width:4px;height:4px;border-radius:50%;background:var(--gold)}
+
+.article{max-width:820px;margin:0 auto}
+.article .lead{font-family:'Inter',sans-serif;font-size:20px;line-height:1.55;color:var(--txt);font-weight:500;margin-bottom:34px}
+.article p{font-family:'Inter',sans-serif;font-size:16px;line-height:1.75;color:#D9CFD1;margin-bottom:22px}
+.article h2{font-size:30px;letter-spacing:.02em;margin:44px 0 18px;color:#fff}
+.article .pull{border-left:3px solid var(--gold);padding:6px 0 6px 26px;margin:36px 0;font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1.1;letter-spacing:.02em;color:var(--gold)}
+.article ul{list-style:none;margin:0 0 26px}
+.article ul li{font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;color:#D9CFD1;padding:10px 0 10px 30px;position:relative;border-bottom:1px solid var(--line)}
+.article ul li::before{content:"";position:absolute;left:4px;top:19px;width:9px;height:9px;background:var(--red)}
+.article .share{display:flex;align-items:center;gap:12px;margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
+.article .share span{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:600}
+.article .share a{width:38px;height:38px;border-radius:50%;background:var(--panel);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--txt);transition:.2s}
+.article .share a:hover{background:var(--gold);color:var(--deep);border-color:var(--gold)}
+
+.more-news{border-top:1px solid var(--line)}
+.back-link{font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:30px;transition:.2s}
+.back-link:hover{gap:12px}
+
+@media(max-width:980px){
+  .hd nav{display:none}
+  .news-hero h1{font-size:48px}
+  .art-hero h1{font-size:40px}
+  .art-grid{grid-template-columns:1fr}
+  .article .lead{font-size:18px}
+}
+</style>
+<style id="sponsor-css">
+/* ===== sponsor system ===== */
+.sp-eyebrow{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+/* wordmarks (text-based, monochrome) */
+.wm{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:.01em;color:#fff;opacity:.78;transition:.25s;white-space:nowrap}
+a:hover .wm,.wm:hover{opacity:1}
+.wm-bespace{text-transform:lowercase}
+.wm-bespace::before{content:"\2261\00a0";font-weight:400}
+.wm-bespace em{display:block;font-style:normal;font-weight:600;font-size:.34em;letter-spacing:.42em;text-transform:uppercase;opacity:.75;margin-top:2px}
+.wm-zeus{font-style:italic;font-weight:800;letter-spacing:.03em}
+.wm-slot{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--mut);border:1px dashed rgba(255,255,255,.28);padding:10px 22px;transition:.25s;white-space:nowrap}
+a.wm-slot:hover,.wm-slot:hover{border-color:var(--gold);color:var(--gold)}
+/* inline "presented by" inside section headers */
+.sp-inline{font-family:'Inter',sans-serif;display:flex;align-items:center;gap:12px;margin-left:auto;margin-right:36px}
+.sp-inline .pby{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--mut)}
+.sp-inline .wm{font-size:17px}
+.sp-inline .wm-slot{font-size:9.5px;padding:7px 14px}
+/* match day partner line (red band) */
+.sp-matchday{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:16px;margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.22)}
+.sp-matchday .pby{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.75)}
+.sp-matchday .wm{font-size:19px}
+/* flagship main-partner band */
+.sp-band{background:#000;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sp-band .wrap{display:flex;align-items:center;justify-content:space-between;gap:40px;padding-top:52px;padding-bottom:52px}
+.sp-band .l{display:flex;flex-direction:column;gap:14px}
+.sp-band .l .wm{font-size:44px;line-height:1}
+.sp-band .r{display:flex;align-items:center;gap:34px;text-align:right}
+.sp-band .r p{font-family:'Inter',sans-serif;font-size:14px;color:var(--mut);max-width:340px;line-height:1.6}
+.sp-band .r a{font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.3);padding:13px 24px;transition:.25s;white-space:nowrap}
+.sp-band .r a:hover{background:var(--gold);border-color:var(--gold);color:var(--deep)}
+/* slim single-partner band (newsroom / technical) */
+.sp-slim{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(0,0,0,.35)}
+.sp-slim .wrap{display:flex;align-items:center;gap:26px;padding-top:26px;padding-bottom:26px}
+.sp-slim .wm{font-size:18px}
+.sp-slim .sp-eyebrow{padding-right:26px;border-right:1px solid var(--line)}
+.sp-slim a.more{font-family:'Inter',sans-serif;margin-left:auto;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);display:inline-flex;align-items:center;gap:7px}
+/* pre-footer partners strip */
+.partners{background:var(--night);border-top:1px solid var(--line);padding:64px 0 70px}
+.partners .pt-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:34px}
+.partners .pt-head h2{font-size:34px;letter-spacing:.02em}
+.partners .pt-head a{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);display:inline-flex;align-items:center;gap:8px}
+.pt-row{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.pt-cell{background:#000;border:1px solid var(--line);min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:22px 12px;transition:.25s}
+.pt-cell:hover{border-color:var(--gold)}
+.pt-tier{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--mut)}
+.pt-cell .wm{font-size:23px;text-align:center}
+.pt-cell .wm-bespace em{letter-spacing:.34em}
+@media(max-width:980px){
+  .sp-inline{display:none}
+  .sp-band .wrap{flex-direction:column;align-items:flex-start;text-align:left}
+  .sp-band .r{text-align:left}
+  .sp-band .l .wm{font-size:34px}
+  .sp-slim .wrap{flex-wrap:wrap}
+  .pt-row{grid-template-columns:1fr 1fr}
+  .pt-cell{min-width:0;min-height:110px;padding:16px 8px;gap:10px}
+  .pt-cell .wm{font-size:17px}
+  .pt-tier{font-size:8px;letter-spacing:.12em;text-align:center}
+  .wm-slot{white-space:normal;text-align:center;font-size:9px;letter-spacing:.1em;padding:8px 10px}
+  .partners .pt-head{flex-direction:column;align-items:flex-start;gap:10px}
+  .partners{padding:44px 0}
+}
+
+/* brand wordmarks */
+.wm-img{width:auto;opacity:.92;transition:.25s;display:block}
+a:hover .wm-img,.wm-img:hover{opacity:1}
+.wm-img.lg{height:92px}.wm-img.md{height:34px}.wm-img.sm{height:46px}.wm-img.xs{height:32px}.wm-img.xsv{height:52px}.wm-img.hs{height:58px}
+.wm-strela{font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.wm-strela i{font-style:normal;color:inherit;font-size:.7em;vertical-align:.18em;margin-left:4px}
+.wm-cvair{font-weight:600;letter-spacing:.24em;text-transform:uppercase;font-size:.82em}
+.wm-cvair em{display:block;font-style:normal;font-weight:700;font-size:.6em;letter-spacing:.5em;opacity:.75;margin-top:3px}
+.wm-enacol{font-weight:800;text-transform:lowercase;letter-spacing:.02em}
+.wm-enacol::after{content:"";display:inline-block;width:.28em;height:.28em;border-radius:50%;background:currentColor;margin-left:4px}
+.wm-bca{font-weight:900;letter-spacing:.1em}
+.wm-bca em{display:block;font-style:normal;font-weight:600;font-size:.3em;letter-spacing:.18em;text-transform:uppercase;opacity:.75;margin-top:3px}
+.wm-alou{font-weight:800;letter-spacing:.01em;text-transform:lowercase}
+.pt-row{grid-template-columns:repeat(7,1fr)}
+.pt-cell .wm{font-size:19px}
+.pt-cell .wm-cvair{font-size:14px}
+.pt-cell .wm-bca em{font-size:.28em;letter-spacing:.12em}
+@media(max-width:980px){.pt-row{grid-template-columns:repeat(2,1fr)}.wm-img.lg{height:64px}}
+</style>
+<style id="news2col">
+.article{max-width:none;margin:0}
+.art-2col{width:100%;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:72px;align-items:start}
+.art-2col .art-aside{position:sticky;top:120px;display:flex;flex-direction:column;gap:26px}
+.art-2col .pull{margin:0}
+.art-aside .a-meta{border-top:1px solid var(--line);padding-top:20px}
+.art-aside .a-meta .k{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--mut);display:block;margin-bottom:6px}
+.art-aside .a-meta .v{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.02em;color:var(--gold);line-height:1.1;margin-bottom:16px}
+.gfx{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,var(--red2) 0%,var(--deep) 58%,#000 100%);position:relative;overflow:hidden}
+.gfx::after{content:"";position:absolute;right:-90px;top:-90px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(245,180,0,.20),transparent 70%)}
+.gfx .big{font-family:'Bebas Neue',sans-serif;color:var(--gold);line-height:.86;letter-spacing:.02em;font-size:96px;position:relative;z-index:2}
+.gfx .cap{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.72);font-weight:700;position:relative;z-index:2;text-align:center;padding:0 14px}
+.art-hero .bg .gfx .big{font-size:200px}
+.art-hero .bg .gfx .cap{font-size:13px;letter-spacing:.3em}
+@media(max-width:980px){
+  .art-2col{grid-template-columns:1fr;gap:36px}
+  .art-2col .art-aside{position:static}
+  .gfx .big{font-size:64px}
+  .art-hero .bg .gfx .big{font-size:96px}
+}
+</style>
+</head>
+<body>
+<header class="hd"><div class="wrap">
+  <nav class="nav-left">
+    <a href="index.html">Home</a><a href="first-team.html">First Team</a><a href="season.html">Season</a>
+    <a href="club.html">Club</a><a href="news.html" class="active">News</a>
+  </nav>
+  <a class="logo" href="#" aria-label="Sport Sal Rei Club"><img src="assets/img/logo-crest.png" alt=""></a>
+  <div class="right">
+    <nav class="nav-right">
+      <a href="#">Sponsor</a><a href="#">Media</a><a href="#">Shop</a>
+    </nav>
+    <div class="lang" id="langSel">
+      <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false">
+        <span class="cur">EN</span><i class="ti ti-chevron-down chev"></i>
+      </button>
+      <div class="lang-menu">
+        <a href="#" data-lang="EN" class="active">English</a>
+        <a href="#" data-lang="PT">Português</a>
+      </div>
+    </div>
+  </div>
+</div></header>
+<article>
+<section class="art-hero">
+  <div class="bg"><div class="gfx"><div class="big">50</div><div class="cap">Years of the Cape Verde Championship</div></div></div>
+  <div class="veil"></div>
+  <div class="wrap"><div class="inner">
+    <span class="tag">Club</span>
+    <h1>Fifty years of the Cape Verde Championship — and Sal Rei on the roll of honour</h1>
+    <div class="sub-meta"><span>July 8, 2026</span><span class="dot"></span><span>3 min read</span><span class="dot"></span><span>Sport Sal Rei Club</span></div>
+  </div></div>
+</section>
+
+<section class="section"><div class="wrap">
+  <div class="article art-2col"><div class="art-main">
+    <a class="back-link" href="news.html"><i class="ti ti-arrow-left"></i>All news</a>
+    <p class="lead">The trophy lifted at this season’s national final carried a special mark: fifty years of the Campeonato de Cabo Verde. Among the champions inscribed in that history is Sport Sal Rei Club, winners in 2003/2004.</p>
+    <p>Half a century of national championship football in Cape Verde was marked this year with a redesigned trophy, bearing the commemoration of the competition’s fiftieth anniversary. The Federation also confirmed that prize money had been doubled this season, with awards attached to wins, draws, progression through the rounds and the title itself.</p>
+<h2>Sal Rei among the champions</h2>
+<p>For Sport Sal Rei Club, the anniversary carries a particular meaning. In 2003/2004 the club was crowned National Champion of Cape Verde — the only side from Boa Vista to have taken the title. That season, Sal Rei also produced the championship’s best player, its top scorer and its best coach.</p>
+<p>Every year since, the competition has brought together the champions of each sporting region, from Santo Antão in the north to Brava in the south. It remains the stage on which island football measures itself against the whole country.</p>
+<h2>A story still being written</h2>
+<p>Fifty years of the national championship arrive in the same season that Sal Rei marks seventy-five years of its own. Two anniversaries, one shared history — and, for the club, a reminder that its name already belongs on that list.</p>
+    <div class="share"><span>Share</span>
+      <a href="#" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>
+      <a href="#" aria-label="Share on X"><i class="ti ti-brand-x"></i></a>
+      <a href="#" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+    </div>
+  </div><aside class="art-aside"><div class="pull">One island club, one national title — written into fifty years of history.</div><div class="a-meta"><span class="k">Anniversary</span><div class="v">50 years</div><span class="k">Sal Rei’s title</span><div class="v">2003/2004</div><span class="k">Governing body</span><div class="v">Federação Cabo-verdiana de Futebol</div></div></aside></div>
+</div></section>
+
+<div class="sp-slim"><div class="wrap"><span class="sp-eyebrow">Newsroom Partner</span><span class="wm wm-strela">Strela<i>★</i></span><a class="more" href="#">Become a partner <i class="ti ti-arrow-right"></i></a></div></div>
+
+<section class="section more-news" style="padding-top:90px"><div class="wrap">
+  <div class="sec-h"><h2><span class="sec-eyebrow">Newsroom</span>Read next</h2><a href="news.html">All news <i class="ti ti-arrow-right"></i></a></div>
+  <div class="art-grid"><a class="acard" href="news-anniversary.html">
+      <div class="ph"><img src="assets/img/club-celebration.jpg" alt="" style="object-position:center 45%"></div>
+      <div class="body"><span class="tag">Club</span><h3>Sal Rei turn 75: the anniversary programme is unveiled</h3>
+      <div class="meta">July 10, 2026</div></div></a>
+<a class="acard" href="news-tournament.html">
+      <div class="ph"><img src="assets/img/matchday-arsenio-ramos.jpg" alt="" style="object-position:center 50%"></div>
+      <div class="body"><span class="tag">First team</span><h3>Capitão Carlos Nascimento Tournament opens pre-season in August</h3>
+      <div class="meta">July 8, 2026</div></div></a>
+<a class="acard" href="news-worldcup.html">
+      <div class="ph"><div class="gfx"><div class="big">R32</div><div class="cap">FIFA World Cup 2026 · Round of 32</div></div></div>
+      <div class="body"><span class="tag">Cape Verde</span><h3>Cape Verde write history: the Blue Sharks reach the World Cup knockouts</h3>
+      <div class="meta">July 6, 2026</div></div></a></div>
+</div></section>
+</article>
+<section class="partners"><div class="wrap">
+  <div class="pt-head"><h2><span class="sec-eyebrow">Together since day one</span>Partners 2026/27</h2>
+  <a href="#">Become a partner <i class="ti ti-arrow-right"></i></a></div>
+  <div class="pt-row">
+    <div class="pt-cell"><span class="pt-tier">Main Partner</span><img class="wm-img sm" src="assets/img/partner-mgm.png" alt="MGM"></div>
+    <div class="pt-cell"><span class="pt-tier">Technical Partner</span><span class="wm wm-zeus">Zeus</span></div>
+    <div class="pt-cell"><span class="pt-tier">Official Partner</span><img class="wm-img xs" src="assets/img/partner-official-1.png" alt="Official partner"></div><div class="pt-cell"><span class="pt-tier">Official Partner</span><img class="wm-img xsv" src="assets/img/partner-official-2.svg" alt="Official partner"></div><div class="pt-cell"><span class="pt-tier">Official Partner</span><img class="wm-img hs" src="assets/img/partner-hungry-surfer.png" alt="Hungry Surfer"></div><div class="pt-cell"><span class="pt-tier">Official Partner</span><span class="wm wm-bca">BCA<em>Banco Comercial do Atlântico</em></span></div><div class="pt-cell"><span class="pt-tier">Official Partner</span><span class="wm wm-alou">alou!</span></div>
+  </div>
+</div></section>
+
+<div class="forza"><h2>Juntos Somos Mais Fortes</h2></div>
+
+<div class="social"><div class="wrap">
+  <a href="#" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>
+  <a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+  <a href="#" aria-label="YouTube"><i class="ti ti-brand-youtube"></i></a>
+  <a href="#" aria-label="TikTok"><i class="ti ti-brand-tiktok"></i></a>
+  <a href="#" aria-label="X"><i class="ti ti-brand-x"></i></a>
+</div></div>
+
+<footer class="ft"><div class="wrap">
+  <div class="ft-grid">
+    <div class="ft-brand"><img src="assets/img/logo-crest.png" alt="SSRC"><p>Sport Sal Rei Club. Founded on 28 August 1951 in Sal Rei, island of Boa Vista, Cape Verde.</p></div>
+    <div><h4>Season</h4><ul><li><a href="first-team.html">Team</a></li><li><a href="season.html">Results</a></li><li><a href="season.html">Standings</a></li><li><a href="season.html">Fixtures</a></li></ul></div>
+    <div><h4>Club</h4><ul><li><a href="#">History</a></li><li><a href="#">Honours</a></li><li><a href="#">Stadium</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div><h4>Tickets</h4><ul><li><a href="#">Buy tickets</a></li><li><a href="#">Membership</a></li><li><a href="#">Official shop</a></li><li><a href="#">FAQ</a></li></ul></div>
+  </div>
+  <div class="ft-bot"><span>&copy; 1951 — 2026 Sport Sal Rei Club</span><span>Sal Rei &middot; Boa Vista &middot; Cape Verde</span></div>
+</div></footer>
+
+<script>
+(function(){
+  var sel = document.getElementById('langSel');
+  if(!sel) return;
+  var btn = sel.querySelector('.lang-btn');
+  var cur = sel.querySelector('.cur');
+  var items = sel.querySelectorAll('.lang-menu a');
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = sel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  items.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      cur.textContent = a.getAttribute('data-lang');
+      items.forEach(function(x){ x.classList.remove('active'); });
+      a.classList.add('active');
+      sel.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+    });
+  });
+  document.addEventListener('click', function(){
+    sel.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+  });
+})();
+(function(){
+  var car = document.getElementById('shopCarousel');
+  if(!car) return;
+  var slides = car.querySelectorAll('.slide');
+  var dots = car.querySelectorAll('.dots button');
+  var i = 0, timer;
+  function go(n){
+    slides[i].classList.remove('active');
+    if(dots[i]) dots[i].classList.remove('active');
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add('active');
+    if(dots[i]) dots[i].classList.add('active');
+  }
+  function start(){ timer = setInterval(function(){ go(i+1); }, 4000); }
+  function reset(){ clearInterval(timer); start(); }
+  dots.forEach(function(dot){
+    dot.addEventListener('click', function(){
+      go(parseInt(dot.getAttribute('data-i'),10));
+      reset();
+    });
+  });
+  start();
+})();
+</script>
+</body></html>
