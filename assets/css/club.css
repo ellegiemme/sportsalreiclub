@@ -1,0 +1,56 @@
+.club-hero{min-height:640px}
+.club-hero h1{font-size:88px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:-64px;position:relative;z-index:5}
+.fact{background:#000;border:1px solid var(--red);padding:24px 26px;transition:.25s;display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:10px}
+.fact:hover{border-color:var(--gold)}
+.fact .k{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--mut);display:block}
+.fact .v{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:.02em;line-height:1;color:var(--gold)}
+.tl-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.tl-wrap::before{content:none}
+.tl-item{background:#000;border-top:3px solid var(--red);padding:22px 24px 28px;transition:.25s}
+.tl-item:hover{border-top-color:var(--gold)}
+.tl-item::before{content:none}
+.tl-item .y{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--gold);letter-spacing:.03em;line-height:1;margin-bottom:6px}
+.tl-item h3{font-size:19px;letter-spacing:.01em;margin-bottom:8px}
+.tl-item p{font-family:'Inter',sans-serif;font-size:13px;color:var(--mut);line-height:1.6}
+.hon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.hon{background:#000;border:1px solid var(--line);padding:34px 28px;display:flex;flex-direction:column;gap:14px;transition:.25s}
+.hon:hover{border-color:var(--gold);transform:translateY(-4px)}
+.hon .n{font-family:'Bebas Neue',sans-serif;font-size:74px;line-height:.85;color:var(--gold)}
+.hon .t{font-size:24px;letter-spacing:.02em;line-height:1.05}
+.hon .years{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.hon .years span{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.06em;font-weight:600;color:var(--mut);border:1px solid var(--line);padding:4px 8px;white-space:nowrap}
+.era-band{background:var(--red);padding:84px 0;text-align:center}
+.era-band blockquote{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1.02;letter-spacing:.02em;color:#fff;max-width:980px;margin:0 auto 18px}
+.era-band blockquote b{color:var(--gold);font-weight:400}
+.era-band cite{font-family:'Inter',sans-serif;font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.8)}
+.art-2col{max-width:none;width:100%;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:72px;align-items:start}
+.art-2col .art-main{max-width:none}
+.art-2col .art-main p,.art-2col .art-main .lead{max-width:none}
+.art-2col .art-aside{position:sticky;top:120px}
+.art-2col .pull{margin:0}
+.band-white{background:#fff}
+.band-white .article .lead{color:#120507}
+.band-white .article p{color:#3a2b2d}
+.band-white .article h2{color:#120507}
+.band-white .pull{border-left-color:var(--red);color:var(--red)}
+.band-white .sec-h h2{color:#120507}
+.band-white .hon{background:var(--red);border-color:var(--red)}
+.band-white .hon:hover{background:var(--red2);border-color:var(--red2)}
+.band-white .hon .n{color:var(--gold)}
+.band-white .hon .t{color:#fff}
+.band-white .hon .years span{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.35)}
+@media(max-width:980px){
+  .club-hero h1{font-size:52px}
+  .facts{grid-template-columns:1fr 1fr;margin-top:-30px}
+  .fact{min-width:0;padding:18px 16px}
+  .fact .v{font-size:19px;word-break:break-word}
+  .tl-wrap{grid-template-columns:1fr}
+  .art-2col{grid-template-columns:1fr}
+  .art-2col .art-aside{position:static}
+  .hon-grid{grid-template-columns:1fr}
+  .hon{min-width:0;padding:26px 20px}
+  .hon .n{font-size:56px}
+  .hon .t{font-size:21px}
+  .era-band blockquote{font-size:32px}
+}
