@@ -150,3 +150,23 @@ table.standings{width:100%;border-collapse:collapse;font-family:'Inter',sans-ser
   .standings .crest{width:30px;height:30px}
   .standings td.tm{gap:10px}
 }
+
+/* competition tabs: every panel shows without script; site.js hides the inactive ones */
+.js .comp-panel[data-inactive]{display:none}
+.mtabs{flex-wrap:wrap}
+a.mtab{display:inline-flex;align-items:center}
+.comp-table{margin-top:96px}
+.tiebreak{font-family:'Inter',sans-serif;font-size:13px;color:var(--mut);margin-top:10px;max-width:760px;line-height:1.6}
+.rounds{margin-top:40px;font-family:'Inter',sans-serif}
+.rounds summary{cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding:12px 0}
+.rounds summary::after{content:"+";font-size:18px;line-height:1}
+.rounds[open] summary::after{content:"−"}
+.rounds-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:4px;margin-top:14px}
+.round{background:#000;padding:20px 22px}
+.round h4{font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.rm{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;font-size:14px;padding:6px 0;color:var(--txt)}
+.rm span:last-child{text-align:right}
+.rm b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:20px;color:var(--gold);min-width:44px;text-align:center}
+.rm.us{color:#fff;font-weight:600}
+.rm.us b{color:#fff}
+@media(max-width:640px){.comp-table{margin-top:64px}.rm{font-size:13px}}

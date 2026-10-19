@@ -1,0 +1,38 @@
+// First-team squad 2026/27. Photos marked unconfirmed must be checked against the player before launch.
+export const players = [
+  { num: 1, name: "Danilson Jorge Mendes Duarte", group: 'gk', pos: 'gk', photo: "/assets/img/player-01-danilson-duarte.jpg", unconfirmed: true },
+  { num: 12, name: "Ilson Santos Lopes", group: 'gk', pos: 'gk', photo: null },
+  { num: 24, name: "Wagner Ivan Lima Lopes", group: 'gk', pos: 'gk', photo: null },
+  { num: 2, name: "Isandro Pereira Cabral", group: 'df', pos: 'cbfb', photo: "/assets/img/player-02-isandro-cabral.jpg", unconfirmed: true },
+  { num: 6, name: "Fabio Junior Gomes Moreira", group: 'df', pos: 'cb', photo: "/assets/img/player-06-fabio-moreira.jpg", unconfirmed: true },
+  { num: 13, name: "Kedilson De Jesus Fernandes Mendes", group: 'df', pos: 'cb', photo: "/assets/img/player-13-kedilson-mendes.jpg", unconfirmed: true },
+  { num: 16, name: "Leonardo Nascimento Almeida", group: 'df', pos: 'fb', photo: null },
+  { num: 21, name: "Dery Leandro Ramos Pires", group: 'df', pos: 'fb', photo: null },
+  { num: 22, name: "Marcio Rafael Fernandes Da Graça", group: 'df', pos: 'fb', photo: null },
+  { num: 23, name: "Gerson Paulo Ramos Da Graça", group: 'df', pos: 'cb', photo: null },
+  { num: 25, name: "Thioune Fallou", group: 'df', pos: 'fb', photo: null },
+  { num: 27, name: "Ricardo Furtado De Pina", group: 'df', pos: 'cb', photo: null },
+  { num: 30, name: "Orlando Aderito Correia Gomes", group: 'df', pos: 'fb', photo: null },
+  { num: 96, name: "Ovidio Junior Brito Evora", group: 'df', pos: 'fb', photo: null },
+  { num: 5, name: "Aylton Correia Fortes", group: 'mf', pos: 'cm', photo: null },
+  { num: 7, name: "Yanik Lima Oliveira", group: 'mf', pos: 'cm', photo: null },
+  { num: 8, name: "Carlos Jose Rocha Nascimento", group: 'mf', pos: 'w', photo: null },
+  { num: 9, name: "Marco Wilson Lima Evora", group: 'mf', pos: 'mw', photo: null },
+  { num: 10, name: "Fabio William Lima Evora", group: 'mf', pos: 'w', photo: null },
+  { num: 11, name: "Welbote Orlando Quite", group: 'mf', pos: 'cm', photo: null },
+  { num: 14, name: "Flavio Lairson Ramos Oliveira", group: 'mf', pos: 'w', photo: null },
+  { num: 15, name: "Wilson Moreira Garcia", group: 'mf', pos: 'cm', photo: null },
+  { num: 28, name: "Bruno Luis Varela Pedro", group: 'mf', pos: 'cm', photo: null },
+  { num: 99, name: "João David Sanches Pereira", group: 'mf', pos: 'cm', photo: null },
+  { num: 17, name: "Quenedy Moreira Fortes", group: 'fw', pos: 'fw', photo: null },
+  { num: 18, name: "Marco Antonio Dos Santos Monteiro", group: 'fw', pos: 'fw', photo: null },
+  { num: 19, name: "Diego Brito Almeida", group: 'fw', pos: 'fw', photo: null },
+  { num: 97, name: "Lucas De Brito Rocha", group: 'fw', pos: 'fw', photo: null },
+];
+
+export const staff = [
+  { role: 'head', name: "António \"Toni\" Duarte" },
+  { role: 'assistant', name: "José Mendes" },
+  { role: 'gk', name: "Paulo Freire" },
+  { role: 'physio', name: "Sandra Rocha" },
+];

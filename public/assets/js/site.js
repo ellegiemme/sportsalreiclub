@@ -2,22 +2,10 @@
   var sel = document.getElementById('langSel');
   if(!sel) return;
   var btn = sel.querySelector('.lang-btn');
-  var cur = sel.querySelector('.cur');
-  var items = sel.querySelectorAll('.lang-menu a');
   btn.addEventListener('click', function(e){
     e.stopPropagation();
     var open = sel.classList.toggle('open');
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  items.forEach(function(a){
-    a.addEventListener('click', function(e){
-      e.preventDefault();
-      cur.textContent = a.getAttribute('data-lang');
-      items.forEach(function(x){ x.classList.remove('active'); });
-      a.classList.add('active');
-      sel.classList.remove('open');
-      btn.setAttribute('aria-expanded','false');
-    });
   });
   document.addEventListener('click', function(){
     sel.classList.remove('open');
@@ -83,4 +71,24 @@
     el.classList.add('rv');
     io.observe(el);
   });
+})();
+(function(){
+  // Competition tabs on the season page.
+  var tabs = document.querySelectorAll('[data-tab]');
+  if(!tabs.length) return;
+  document.documentElement.classList.add('js');
+  function show(id){
+    var found = false;
+    tabs.forEach(function(t){ var on = t.getAttribute('data-tab') === id; t.classList.toggle('on', on); t.setAttribute('aria-selected', on); found = found || on; });
+    if(!found) return;
+    document.querySelectorAll('[data-tab-panel]').forEach(function(p){ p.toggleAttribute('data-inactive', p.id !== id); });
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(e){
+      e.preventDefault();
+      show(t.getAttribute('data-tab'));
+      history.replaceState(null, '', '#' + t.getAttribute('data-tab'));
+    });
+  });
+  if(location.hash) show(location.hash.slice(1));
 })();
