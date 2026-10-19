@@ -3,7 +3,7 @@
 .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:-64px;position:relative;z-index:5}
 .fact{background:#000;border:1px solid var(--red);padding:24px 26px;transition:.25s;display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:10px}
 .fact:hover{border-color:var(--gold)}
-.fact .k{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--mut);display:block}
+.fact .k{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--mut);display:block}
 .fact .v{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:.02em;line-height:1;color:var(--gold)}
 .tl-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
 .tl-wrap::before{content:none}
@@ -19,11 +19,11 @@
 .hon .n{font-family:'Bebas Neue',sans-serif;font-size:74px;line-height:.85;color:var(--gold)}
 .hon .t{font-size:24px;letter-spacing:.02em;line-height:1.05}
 .hon .years{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
-.hon .years span{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.06em;font-weight:600;color:var(--mut);border:1px solid var(--line);padding:4px 8px;white-space:nowrap}
+.hon .years span{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.06em;font-weight:600;color:var(--mut);border:1px solid var(--line);padding:4px 8px;white-space:nowrap}
 .era-band{background:var(--red);padding:84px 0;text-align:center}
 .era-band blockquote{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1.02;letter-spacing:.02em;color:#fff;max-width:980px;margin:0 auto 18px}
 .era-band blockquote b{color:var(--gold);font-weight:400}
-.era-band cite{font-family:'Inter',sans-serif;font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.8)}
+.era-band cite{font-family:'Inter',sans-serif;font-style:normal;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.8)}
 .art-2col{max-width:none;width:100%;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:72px;align-items:start}
 .art-2col .art-main{max-width:none}
 .art-2col .art-main p,.art-2col .art-main .lead{max-width:none}

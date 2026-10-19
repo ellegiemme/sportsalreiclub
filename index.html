@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/sponsor.css">
+<link rel="stylesheet" href="assets/css/global.css">
 </head><body>
 
 <header class="hd"><div class="wrap">
@@ -14,11 +15,12 @@
     <a href="index.html">Home</a><a href="first-team.html">First Team</a><a href="season.html">Season</a>
     <a href="club.html">Club</a><a href="news.html">News</a>
   </nav>
-  <a class="logo" href="#" aria-label="Sport Sal Rei Club"><img src="assets/img/logo-crest.png" alt=""></a>
+  <a class="logo" href="index.html" aria-label="Sport Sal Rei Club"><img src="assets/img/logo-crest.png" alt=""></a>
   <div class="right">
     <nav class="nav-right">
       <a href="#">Sponsor</a><a href="#">Media</a><a href="#">Shop</a>
     </nav>
+    <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
     <div class="lang" id="langSel">
       <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false">
         <span class="cur">EN</span><i class="ti ti-chevron-down chev"></i>
@@ -29,13 +31,16 @@
       </div>
     </div>
   </div>
-</div></header>
+</div>
+<nav class="mnav" id="mnav" aria-label="Menu"><div class="wrap"><div class="mnav-main"><a href="index.html" class="active" aria-current="page">Home</a><a href="first-team.html">First Team</a><a href="season.html">Season</a><a href="club.html">Club</a><a href="news.html">News</a></div><div class="mnav-sub"><a href="#">Sponsor</a><a href="#">Media</a><a href="#">Shop</a></div></div></nav>
+</header>
 
 <section class="hero">
   <div class="grad"></div>
   <div class="wrap"><div class="inner">
     <h1>We are<br><span>Sport Sal Rei Club</span></h1>
     <p class="sub">The oldest and most decorated club on the island of Boa Vista. A red passion since 1951.</p>
+    <div class="acts"><a class="b b-gold" href="season.html">Fixtures &amp; results <i class="ti ti-arrow-right"></i></a><a class="b b-line" href="club.html">Our story</a></div>
   </div></div>
 </section>
 
@@ -167,9 +172,9 @@
 <section class="section"><div class="wrap">
   <div class="sec-h"><h2><span class="sec-eyebrow">Explore</span>More Sal Rei</h2></div>
   <div class="more">
-    <a class="mcard m1"><div class="fg"></div><div class="mc-in"><h3>Membership</h3><p>Become a member and live the club from the front row, with exclusive benefits.</p><span class="lk">Learn more <i class="ti ti-arrow-right"></i></span></div></a>
-    <a class="mcard m2"><div class="fg"></div><div class="mc-in"><h3>Academy</h3><p>The academy of Boa Vista's most decorated club. Men first, champions second.</p><span class="lk">Learn more <i class="ti ti-arrow-right"></i></span></div></a>
-    <a class="mcard m3"><div class="fg"></div><div class="mc-in"><h3>Stadium</h3><p>Estádio Municipal Arsénio Ramos, the red heart of Sal Rei.</p><span class="lk">Learn more <i class="ti ti-arrow-right"></i></span></div></a>
+    <a class="mcard m1" href="#"><img class="pic" src="assets/img/kit-player-wearing.jpg" alt="Sal Rei player wearing the home kit" loading="lazy"><div class="fg"></div><div class="mc-in"><h3>Membership</h3><p>Become a member and live the club from the front row, with exclusive benefits.</p><span class="lk">Become a member <i class="ti ti-arrow-right"></i></span></div></a>
+    <a class="mcard m2" href="news-academy.html"><img class="pic" src="assets/img/academy-player.jpg" alt="Young academy player on the pitch" loading="lazy"><div class="fg"></div><div class="mc-in"><h3>Academy</h3><p>The academy of Boa Vista's most decorated club. Men first, champions second.</p><span class="lk">Enrol a player <i class="ti ti-arrow-right"></i></span></div></a>
+    <a class="mcard m3" href="club.html"><img class="pic" src="assets/img/matchday-arsenio-ramos.jpg" alt="Estádio Arsénio Ramos on match day" loading="lazy"><div class="fg"></div><div class="mc-in"><h3>Stadium</h3><p>Estádio Municipal Arsénio Ramos, the red heart of Sal Rei.</p><span class="lk">Visit the stadium <i class="ti ti-arrow-right"></i></span></div></a>
   </div>
 </div></section>
 

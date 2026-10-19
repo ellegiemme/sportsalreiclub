@@ -1,5 +1,5 @@
 /* ===== sponsor system ===== */
-.sp-eyebrow{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+.sp-eyebrow{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--gold)}
 /* wordmarks (text-based, monochrome) */
 .wm{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:.01em;color:#fff;opacity:.78;transition:.25s;white-space:nowrap}
 a:hover .wm,.wm:hover{opacity:1}
@@ -7,16 +7,16 @@ a:hover .wm,.wm:hover{opacity:1}
 .wm-bespace::before{content:"\2261\00a0";font-weight:400}
 .wm-bespace em{display:block;font-style:normal;font-weight:600;font-size:.34em;letter-spacing:.42em;text-transform:uppercase;opacity:.75;margin-top:2px}
 .wm-zeus{font-style:italic;font-weight:800;letter-spacing:.03em}
-.wm-slot{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--mut);border:1px dashed rgba(255,255,255,.28);padding:10px 22px;transition:.25s;white-space:nowrap}
+.wm-slot{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--mut);border:1px dashed rgba(255,255,255,.28);padding:10px 22px;transition:.25s;white-space:nowrap}
 a.wm-slot:hover,.wm-slot:hover{border-color:var(--gold);color:var(--gold)}
 /* inline "presented by" inside section headers */
 .sp-inline{font-family:'Inter',sans-serif;display:flex;align-items:center;gap:12px;margin-left:auto;margin-right:36px}
-.sp-inline .pby{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--mut)}
+.sp-inline .pby{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--mut)}
 .sp-inline .wm{font-size:17px}
-.sp-inline .wm-slot{font-size:9.5px;padding:7px 14px}
+.sp-inline .wm-slot{font-size:13px;padding:7px 14px}
 /* match day partner line (red band) */
 .sp-matchday{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:16px;margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.22)}
-.sp-matchday .pby{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.75)}
+.sp-matchday .pby{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.75)}
 .sp-matchday .wm{font-size:19px}
 /* flagship main-partner band */
 .sp-band{background:#000;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -25,23 +25,23 @@ a.wm-slot:hover,.wm-slot:hover{border-color:var(--gold);color:var(--gold)}
 .sp-band .l .wm{font-size:44px;line-height:1}
 .sp-band .r{display:flex;align-items:center;gap:34px;text-align:right}
 .sp-band .r p{font-family:'Inter',sans-serif;font-size:14px;color:var(--mut);max-width:340px;line-height:1.6}
-.sp-band .r a{font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.3);padding:13px 24px;transition:.25s;white-space:nowrap}
+.sp-band .r a{font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.3);padding:13px 24px;transition:.25s;white-space:nowrap}
 .sp-band .r a:hover{background:var(--gold);border-color:var(--gold);color:var(--deep)}
 /* slim single-partner band (newsroom / technical) */
 .sp-slim{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(0,0,0,.35)}
 .sp-slim .wrap{display:flex;align-items:center;gap:26px;padding-top:26px;padding-bottom:26px}
 .sp-slim .wm{font-size:18px}
 .sp-slim .sp-eyebrow{padding-right:26px;border-right:1px solid var(--line)}
-.sp-slim a.more{font-family:'Inter',sans-serif;margin-left:auto;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);display:inline-flex;align-items:center;gap:7px}
+.sp-slim a.more{font-family:'Inter',sans-serif;margin-left:auto;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);display:inline-flex;align-items:center;gap:7px}
 /* pre-footer partners strip */
 .partners{background:var(--night);border-top:1px solid var(--line);padding:64px 0 70px}
 .partners .pt-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:34px}
 .partners .pt-head h2{font-size:34px;letter-spacing:.02em}
-.partners .pt-head a{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);display:inline-flex;align-items:center;gap:8px}
+.partners .pt-head a{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);display:inline-flex;align-items:center;gap:8px}
 .pt-row{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
 .pt-cell{background:#000;border:1px solid var(--line);min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:22px 12px;transition:.25s}
 .pt-cell:hover{border-color:var(--gold)}
-.pt-tier{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--mut)}
+.pt-tier{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--mut)}
 .pt-cell .wm{font-size:23px;text-align:center}
 .pt-cell .wm-bespace em{letter-spacing:.34em}
 @media(max-width:980px){
@@ -53,8 +53,8 @@ a.wm-slot:hover,.wm-slot:hover{border-color:var(--gold);color:var(--gold)}
   .pt-row{grid-template-columns:1fr 1fr}
   .pt-cell{min-width:0;min-height:110px;padding:16px 8px;gap:10px}
   .pt-cell .wm{font-size:17px}
-  .pt-tier{font-size:8px;letter-spacing:.12em;text-align:center}
-  .wm-slot{white-space:normal;text-align:center;font-size:9px;letter-spacing:.1em;padding:8px 10px}
+  .pt-tier{font-size:13px;letter-spacing:.12em;text-align:center}
+  .wm-slot{white-space:normal;text-align:center;font-size:13px;letter-spacing:.1em;padding:8px 10px}
   .partners .pt-head{flex-direction:column;align-items:flex-start;gap:10px}
   .partners{padding:44px 0}
 }

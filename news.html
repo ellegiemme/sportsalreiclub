@@ -8,18 +8,20 @@
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/news.css">
 <link rel="stylesheet" href="assets/css/sponsor.css">
-<link rel="stylesheet" href="assets/css/news-gfx.css"><link rel="stylesheet" href="assets/css/news-grid.css"></head>
+<link rel="stylesheet" href="assets/css/news-gfx.css"><link rel="stylesheet" href="assets/css/news-grid.css"><link rel="stylesheet" href="assets/css/global.css">
+</head>
 <body>
 <header class="hd"><div class="wrap">
   <nav class="nav-left">
     <a href="index.html">Home</a><a href="first-team.html">First Team</a><a href="season.html">Season</a>
     <a href="club.html">Club</a><a href="news.html" class="active">News</a>
   </nav>
-  <a class="logo" href="#" aria-label="Sport Sal Rei Club"><img src="assets/img/logo-crest.png" alt=""></a>
+  <a class="logo" href="index.html" aria-label="Sport Sal Rei Club"><img src="assets/img/logo-crest.png" alt=""></a>
   <div class="right">
     <nav class="nav-right">
       <a href="#">Sponsor</a><a href="#">Media</a><a href="#">Shop</a>
     </nav>
+    <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
     <div class="lang" id="langSel">
       <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false">
         <span class="cur">EN</span><i class="ti ti-chevron-down chev"></i>
@@ -30,7 +32,9 @@
       </div>
     </div>
   </div>
-</div></header>
+</div>
+<nav class="mnav" id="mnav" aria-label="Menu"><div class="wrap"><div class="mnav-main"><a href="index.html">Home</a><a href="first-team.html">First Team</a><a href="season.html">Season</a><a href="club.html">Club</a><a href="news.html" class="active" aria-current="page">News</a></div><div class="mnav-sub"><a href="#">Sponsor</a><a href="#">Media</a><a href="#">Shop</a></div></div></nav>
+</header>
 <section class="news-hero"><div class="wrap"><div class="inner">
   <span class="kicker">Newsroom</span>
   <h1>Latest <span>News</span></h1>

@@ -47,3 +47,40 @@
   });
   start();
 })();
+(function(){
+  var btn = document.querySelector('.menu-btn');
+  if(!btn) return;
+  var root = document.documentElement;
+  function set(open){
+    root.classList.toggle('menu-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(){ set(!root.classList.contains('menu-open')); });
+  document.querySelectorAll('.mnav a').forEach(function(a){
+    a.addEventListener('click', function(){ set(false); });
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') set(false); });
+  window.addEventListener('resize', function(){ if(window.innerWidth > 980) set(false); });
+})();
+(function(){
+  // Section entrances: only for content below the first screen, so nothing visible ever blinks.
+  if(!('IntersectionObserver' in window)) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sel = '.sec-h,.about .txt>*,.about .visual,.feat,.nc,.match,.acad-head>*,.acad-cat,.tr,.mcard,' +
+            '.pt-head,.pt-cell,.shop .img,.shop .promo,.shop .carousel,.sp-band .l,.sp-band .r,' +
+            '.article>*,.pc,.squad-h,.fx,.fx-month,.standings,.nf-main,.nf-card,.ncard,.club-sec>*';
+  var els = [].slice.call(document.querySelectorAll(sel));
+  var fold = window.innerHeight;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(function(el){
+    if(el.getBoundingClientRect().top < fold) return;
+    var sibs = el.parentNode ? [].indexOf.call(el.parentNode.children, el) : 0;
+    el.style.setProperty('--d', Math.min(sibs, 6) * 70 + 'ms');
+    el.classList.add('rv');
+    io.observe(el);
+  });
+})();

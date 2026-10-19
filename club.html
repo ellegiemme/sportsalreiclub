@@ -10,18 +10,20 @@
 <link rel="stylesheet" href="assets/css/sponsor.css">
 
 <link rel="stylesheet" href="assets/css/club.css">
+<link rel="stylesheet" href="assets/css/global.css">
 </head>
 <body>
 <header class="hd"><div class="wrap">
   <nav class="nav-left">
     <a href="index.html">Home</a><a href="first-team.html">First Team</a><a href="season.html">Season</a>
-    <a href="club.html" class="active">Club</a><a href="news.html" class="active">News</a>
+    <a href="club.html" class="active">Club</a><a href="news.html">News</a>
   </nav>
-  <a class="logo" href="#" aria-label="Sport Sal Rei Club"><img src="assets/img/logo-crest.png" alt=""></a>
+  <a class="logo" href="index.html" aria-label="Sport Sal Rei Club"><img src="assets/img/logo-crest.png" alt=""></a>
   <div class="right">
     <nav class="nav-right">
       <a href="#">Sponsor</a><a href="#">Media</a><a href="#">Shop</a>
     </nav>
+    <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
     <div class="lang" id="langSel">
       <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false">
         <span class="cur">EN</span><i class="ti ti-chevron-down chev"></i>
@@ -32,7 +34,9 @@
       </div>
     </div>
   </div>
-</div></header>
+</div>
+<nav class="mnav" id="mnav" aria-label="Menu"><div class="wrap"><div class="mnav-main"><a href="index.html">Home</a><a href="first-team.html">First Team</a><a href="season.html">Season</a><a href="club.html" class="active" aria-current="page">Club</a><a href="news.html">News</a></div><div class="mnav-sub"><a href="#">Sponsor</a><a href="#">Media</a><a href="#">Shop</a></div></div></nav>
+</header>
 
 <section class="art-hero club-hero">
   <div class="bg"><img src="assets/img/club-celebration.jpg" alt="Sal Rei players celebrating" style="object-position:center 42%"></div>
