@@ -135,8 +135,12 @@ tr.us td{background:#fff5f5;font-weight:600}
 .mrow .sc{display:flex;align-items:center;gap:6px}
 .mrow .when{font-size:14px;color:var(--mut)}
 .mrow.done .when::after{content:" ✓";color:var(--ok);font-weight:700}
-.mrow details summary{cursor:pointer;font-size:14px;color:var(--mut)}
-.mrow .more{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:6px}
+.mrow details summary{cursor:pointer;font-size:14px;color:var(--mut);justify-self:end}
+.mrow details[open]{grid-column:1/-1;border-top:1px solid var(--line);padding-top:12px;margin-top:4px}
+.mrow details[open] summary{margin-bottom:10px;color:var(--ink);font-weight:600}
+.mrow .more{display:grid;grid-template-columns:160px 130px minmax(200px,1fr) 160px auto;gap:12px;align-items:end}
+.mrow .more label{font-size:13px}
+.mrow .more .check{min-height:44px;font-size:14px}
 
 /* partners */
 .plogo{width:120px;height:64px;border-radius:8px;background:#1d1416;display:flex;align-items:center;justify-content:center;padding:8px;flex-shrink:0;color:#fff;font-weight:800}
@@ -166,5 +170,6 @@ tr.us td{background:#fff5f5;font-weight:600}
   .mrow .teams-a{grid-area:a}
   .mrow .status{grid-column:1/-1}
   .mrow .more{grid-template-columns:1fr 1fr}
+  .mrow .more > div:nth-child(3){grid-column:1/-1}
   h1{font-size:24px}
 }

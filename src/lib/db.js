@@ -32,14 +32,14 @@ export async function getUpcoming(db, limit = 3) {
   const { results } = await db.prepare(`SELECT ${MATCH_COLS} FROM matches m JOIN competitions c ON c.id = m.competition_id
     JOIN teams h ON h.id = m.home_id JOIN teams a ON a.id = m.away_id
     WHERE m.status = 'scheduled' AND m.date >= ? AND c.archived = 0 AND (h.is_us = 1 OR a.is_us = 1)
-    ORDER BY m.date, m.time LIMIT ?`).bind(today(), limit).all();
+    ORDER BY m.date, m.time IS NULL, m.time LIMIT ?`).bind(today(), limit).all();
   return results;
 }
 
 export async function getSeason(db) {
   const { results: comps } = await db.prepare('SELECT * FROM competitions WHERE archived = 0 ORDER BY sort, id').all();
   const { results: matches } = await db.prepare(`SELECT m.* FROM matches m JOIN competitions c ON c.id = m.competition_id
-    WHERE c.archived = 0 ORDER BY m.date, m.time, m.id`).all();
+    WHERE c.archived = 0 ORDER BY m.date, m.time IS NULL, m.time, m.id`).all();
   const { results: ties } = await db.prepare('SELECT * FROM tie_order').all();
   return comps.map((c) => ({
     ...c,

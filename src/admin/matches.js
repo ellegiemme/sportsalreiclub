@@ -36,7 +36,7 @@ function matchRow(m, byId) {
 export async function matchesPage({ db, user, url }) {
   const { comps, teams, byId } = await load(db);
   const now = today();
-  const { results: all } = await db.prepare(`SELECT m.* FROM matches m JOIN competitions c ON c.id = m.competition_id WHERE c.archived = 0 ORDER BY m.date, m.time, m.id`).all();
+  const { results: all } = await db.prepare(`SELECT m.* FROM matches m JOIN competitions c ON c.id = m.competition_id WHERE c.archived = 0 ORDER BY m.date, m.id`).all();
   // Default tab: the competition with the oldest match still waiting for a result, else the next one.
   const waiting = all.find((m) => m.status === 'scheduled' && m.date < now) || all.find((m) => m.date >= now);
   const cid = url.searchParams.get('c') || waiting?.competition_id || comps[0]?.id;
