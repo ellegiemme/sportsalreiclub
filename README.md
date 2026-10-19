@@ -15,6 +15,9 @@ assets/img/           Immagini (logo, foto, partner, giocatori)
 .claude/skills/       Skill di Claude Code usate nel progetto (taste-skill)
 ```
 
+Online: https://sport-sal-rei-club.mgm-523.workers.dev/ (Cloudflare Workers, deploy automatico a ogni push su `main`).
+I file elencati in `.assetsignore` (README, `.claude/`, ecc.) non vengono pubblicati.
+
 Font: Google Fonts (Bebas Neue, Inter). Icone: Tabler Icons via jsDelivr.
 
 ## Sviluppo locale
